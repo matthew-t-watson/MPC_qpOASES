@@ -16,11 +16,11 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 CPPFLAGS ?= $(INC_FLAGS) -mcpu=native -Wall -pedantic -Wfloat-equal -Wshadow -DLINUX
 
-LDFLAGS = -L../qpOASES_3.2_ARMPL/build/libs
+LDFLAGS = -L ../qpOASES_3.2_ARMPL/build/libs
 LDLIBS = -lqpOASES
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
-	$(CC) $(OBJS) $(LDFLAGS) $(LDLIBS)-o $@ $(LDFLAGS)
+	$(CC) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $@ $(LDFLAGS)
 
 # c source
 $(BUILD_DIR)/%.c.o: %.c
