@@ -5,7 +5,7 @@ CSOURCES = $(*.c) $(src/*.c)
 CPPSOURCES = $(*.cpp) $(src/*.cpp)
 		
 OBJECTS=$(CSOURCES:.c=.o) $(CPPSOURCES:.cpp=.o)
-INCLUDE=$(CURDIR)/include:$(CURDIR)/include/MPC_qpOASES
+INCLUDE=$(CURDIR)/include\$(CURDIR)/include/MPC_qpOASES
 EXECUTABLE=MPC_qpOASES
 
 all: $(SOURCES) $(EXECUTABLE)
