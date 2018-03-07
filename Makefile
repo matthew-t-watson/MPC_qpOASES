@@ -1,21 +1,40 @@
-CC = armclang++
-CFLAGS = -c -mcpu=native -Wall -pedantic -Wfloat-equal -Wshadow -DLINUX
-LDFLAGS =
-CSOURCES = $(patsubst %.c, %.o, $(wildcard *.c))
-CPPSOURCES = $(patsubst %.cpp, %.o, $(wildcard *.cpp))
-		
-OBJECTS=$(CSOURCES:.c=.o) $(CPPSOURCES:.cpp=.o)
-INCLUDE=-I $(CURDIR)/include	\
-	-I $(CURDIR)/include/MPC_qpOASES
-EXECUTABLE=MPC_qpOASES
+	
+CC = armclang
+CXX = armclang++	
+	
+TARGET_EXEC ?= MPC_qpOASES
 
-all: $(SOURCES) $(EXECUTABLE)
-    
-$(EXECUTABLE): $(OBJECTS) 
-	$(CC) $(INCLUDE) $(LDFLAGS) $(OBJECTS) -o $@
+BUILD_DIR ?= ./build
+SRC_DIRS ?= ./src
+
+SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
+OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
+DEPS := $(OBJS:.o=.d)
+
+INC_DIRS := $(shell find $(SRC_DIRS) -type d)
+INC_FLAGS := $(addprefix -I,$(INC_DIRS))
+
+CPPFLAGS ?= $(INC_FLAGS) -mcpu=native -Wall -pedantic -Wfloat-equal -Wshadow -DLINUX
+
+$(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
+	$(CC) $(OBJS) -o $@ $(LDFLAGS)
+
+# c source
+$(BUILD_DIR)/%.c.o: %.c
+	$(MKDIR_P) $(dir $@)
+	$(CC) $(CPPFLAGS) $(CFLAGS) -c $< -o $@
+
+# c++ source
+$(BUILD_DIR)/%.cpp.o: %.cpp
+	$(MKDIR_P) $(dir $@)
+	$(CXX) $(CPPFLAGS) $(CXXFLAGS) -c $< -o $@
+
+
+.PHONY: clean
 
 clean:
-	-rm -f *.o core *.core
+	$(RM) -r $(BUILD_DIR)
 
-.cpp.o:
-	$(CC) $(CFLAGS) $< -o $@
+-include $(DEPS)
+
+MKDIR_P ?= mkdir -p
