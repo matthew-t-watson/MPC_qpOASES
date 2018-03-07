@@ -11,13 +11,16 @@ SRCS := $(shell find $(SRC_DIRS) -name *.cpp -or -name *.c -or -name *.s)
 OBJS := $(SRCS:%=$(BUILD_DIR)/%.o)
 DEPS := $(OBJS:.o=.d)
 
-INC_DIRS := ./include ./include/MPC_qpOASES #$(shell find $(SRC_DIRS) -type d)
+INC_DIRS := ./include ./include/MPC_qpOASES ../qpOASES_3.2_ARMPL/include
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 CPPFLAGS ?= $(INC_FLAGS) -mcpu=native -Wall -pedantic -Wfloat-equal -Wshadow -DLINUX
 
+LDFLAGS = -L ../qpOASES_3.2_ARMPL/build/libs
+LDLIBS = -lqpOASES
+
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
-	$(CC) $(OBJS) -o $@ $(LDFLAGS)
+	$(CC) $(OBJS) $(LDFLAGS) $(LDLIBS)-o $@ $(LDFLAGS)
 
 # c source
 $(BUILD_DIR)/%.c.o: %.c
