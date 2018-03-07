@@ -5,14 +5,14 @@ CSOURCES = $(patsubst %.c, %.o, $(wildcard *.c))
 CPPSOURCES = $(patsubst %.cpp, %.o, $(wildcard *.cpp))
 		
 OBJECTS=$(CSOURCES:.c=.o) $(CPPSOURCES:.cpp=.o)
-INCLUDE=$(CURDIR)/include	\
-	$(CURDIR)/include/MPC_qpOASES
+INCLUDE=-I $(CURDIR)/include	\
+	-I $(CURDIR)/include/MPC_qpOASES
 EXECUTABLE=MPC_qpOASES
 
 all: $(SOURCES) $(EXECUTABLE)
     
 $(EXECUTABLE): $(OBJECTS) 
-	$(CC) -I $(INCLUDE) $(LDFLAGS) $(OBJECTS) -o $@
+	$(CC) $(INCLUDE) $(LDFLAGS) $(OBJECTS) -o $@
 
 clean:
 	-rm -f *.o core *.core
