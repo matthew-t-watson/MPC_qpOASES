@@ -6,7 +6,7 @@
 #include "calculate_u.h"
 #include "calculate_b.h"
 
-static const double g[NUM_VAR] = {0};
+static const double g[NC*NU+NU+NS] = {0};
 
 int main()
 {
@@ -27,7 +27,7 @@ int computeMPC(const double* x, const double* r, QP_res_t* QP_res, double* u)
 	int nWSR = 1000; /* Not too sure what this means - maybe max iterations? */
 	double cpuTime = 0;
 
-	qpOASES::Option opt;
+	qpOASES::Options opt;
 	QP.setOptions(opt);
 
 	/* Calculate b */
@@ -41,7 +41,7 @@ int computeMPC(const double* x, const double* r, QP_res_t* QP_res, double* u)
 	QP.getPrimalSolution( QP_res->z );
 
 	/* Calculate u */
-	calculate_u(x, r, res.c, u);
+	calculate_u(x, r, QP_res->c, u);
 
 	return res;
 }
