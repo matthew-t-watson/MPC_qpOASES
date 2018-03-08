@@ -14,10 +14,10 @@ DEPS := $(OBJS:.o=.d)
 INC_DIRS := ./include ./include/MPC_qpOASES ../qpOASES_3.2_ARMPL/include
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-CPPFLAGS ?= $(INC_FLAGS) -mcpu=native -Wall -Wfloat-equal -DLINUX
+CPPFLAGS ?= $(INC_FLAGS) -mcpu=native -Wall -Wfloat-equal -DLINUX 
 
 LDFLAGS = -L ../qpOASES_3.2_ARMPL/build/libs
-LDLIBS = -lqpOASES
+LDLIBS = -lqpOASES -lstdc++
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 	$(CC) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $@
