@@ -35,7 +35,7 @@ int computeMPC(const double* x, const double* r, QP_res_t* QP_res, double* u)
 	calculate_b(x, r, b);
 
 	/* Init QP */
-	int res = QP.init(H, g, A, [], [], [], b, nWSR, &cpuTime);
+	int res = QP.init(H, g, A, NULL, NULL, NULL, b, nWSR, &cpuTime);
 
 	/* Get result */
 	QP.getPrimalSolution( QP_res->z );
