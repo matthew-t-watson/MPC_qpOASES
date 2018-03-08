@@ -16,7 +16,7 @@ int main()
 	QP_res_t QP_res;
 	double u[NU] = {0};
 
-	computeMPC(x, r, &QP_res, u);
+	int exitFlag = computeMPC(x, r, &QP_res, u);
 }
 
 int computeMPC(const double* x, const double* r, QP_res_t* QP_res, double* u)
@@ -45,6 +45,6 @@ int computeMPC(const double* x, const double* r, QP_res_t* QP_res, double* u)
 
 	printf("exitFlag %i, Cpu time %fs\n", exitFlag, cpuTime);
 
-	return res;
+	return exitFlag;
 }
 
