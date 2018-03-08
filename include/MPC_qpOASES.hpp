@@ -1,4 +1,7 @@
 
+#ifndef MPC_QPOASES_H
+#define MPC_QPOASES_H
+
 #include "MPC_defines.hpp"
 
 /* Structure of results from QP correctly arranged in memory */
@@ -12,3 +15,6 @@ typedef union {
 } QP_res_t;
 
 int computeMPC(const double* x, const double* r, QP_res_t* QP_res, double* u);
+
+
+#endif
