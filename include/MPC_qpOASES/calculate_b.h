@@ -18,7 +18,7 @@
 #include "calculate_b_types.h"
 
 /* Function Declarations */
-extern void calculate_b(const double x[8], const double r[160], double b[492]);
+void calculate_b(const double x[8], const double r[160], double b[492]);
 extern void calculate_b_initialize(void);
 
 #endif

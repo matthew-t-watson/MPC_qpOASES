@@ -18,7 +18,7 @@
 #include "calculate_u_types.h"
 
 /* Function Declarations */
-extern void calculate_u(const double x[8], const double r[160], const double c
+void calculate_u(const double x[8], const double r[160], const double c
   [80], double u[4]);
 extern void calculate_u_initialize(void);
 
