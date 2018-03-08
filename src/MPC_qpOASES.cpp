@@ -11,7 +11,7 @@ static const double g[NC*NU+NU+NS] = {0};
 int main()
 {
 	/* Test routine */
-	double x[] = {0,1,0,0,0,0,0,0};
+	double x[] = {0,0,0,0,0,0,0,0};
 	double r[NR*NX] = {0};
 	QP_res_t QP_res;
 	double u[NU] = {0};
