@@ -24,7 +24,7 @@ int computeMPC(const double* x, const double* r, QP_res_t* QP_res, double* u)
 	/* Allocate QProblem object */
 	qpOASES::QProblem QP(NC*NU+NU+NS,NCON);
 
-	int nWSR = 1000; /* Not too sure what this means - maybe max iterations? */
+	int nWSR = 100000; /* Not too sure what this means - maybe max iterations? */
 	double cpuTime = 0;
 
 	qpOASES::Options opt;
