@@ -43,6 +43,8 @@ int computeMPC(const double* x, const double* r, QP_res_t* QP_res, double* u)
 	/* Calculate u */
 	calculate_u(x, r, QP_res->c, u);
 
+	printf("Cpu time %f\n", cpuTime);
+
 	return res;
 }
 
