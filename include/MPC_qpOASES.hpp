@@ -10,3 +10,5 @@ typedef union {
 		double s[NS];
 	};
 } QP_res_t;
+
+int computeMPC(const double* x, const double* r, QP_res_t* QP_res, double* u);
