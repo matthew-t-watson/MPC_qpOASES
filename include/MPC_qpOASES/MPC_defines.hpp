@@ -1,0 +1,6 @@
+#defineNX			(8)
+#defineNU			(4)
+#defineNC			(20)
+#defineNS			(12)
+#defineNR			(20)
+#defineNCON			(492)
