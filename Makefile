@@ -17,7 +17,7 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 CPPFLAGS ?= $(INC_FLAGS) -mcpu=native -Wall -Wfloat-equal -DLINUX 
 
 LDFLAGS = -L ../qpOASES_3.2_ARMPL/build/libs -L/opt/arm/armpl_time_limited-18.1.0_Generic-AArch64_Ubuntu-16.04_arm-hpc-compiler_18.1_aarch64-linux/lib
-LDLIBS = -lqpOASES -lstdc++ -lm -larmpl
+LDLIBS = -lqpOASES -lm -larmpl
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 	$(CC) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $@
