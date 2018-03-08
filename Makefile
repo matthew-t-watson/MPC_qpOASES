@@ -1,5 +1,5 @@
 	
-CC = armclang
+CC = armclang++
 CXX = armclang++	
 	
 TARGET_EXEC ?= MPC_qpOASES
