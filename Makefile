@@ -1,5 +1,5 @@
 	
-CC = armclang++
+CC = armclang
 CXX = armclang++	
 	
 TARGET_EXEC ?= MPC_qpOASES
@@ -20,7 +20,7 @@ LDFLAGS = -L ../qpOASES_3.2_ARMPL/build/libs -L/opt/arm/armpl_time_limited-18.1.
 LDLIBS = -lqpOASES -lstdc++ -lm -larmpl
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
-	$(CC) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $@
+	$(CXX) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $@
 
 # c source
 $(BUILD_DIR)/%.c.o: %.c
