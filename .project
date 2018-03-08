@@ -3,6 +3,7 @@
 	<name>MPC_qpOASES</name>
 	<comment></comment>
 	<projects>
+		<project>qpOASES_3.2_ARMPL</project>
 	</projects>
 	<buildSpec>
 	</buildSpec>
