@@ -34,7 +34,7 @@ int computeMPC(const double* x, const double* r, QP_res_t* QP_res, double* u)
 	double b[NCON];
 	calculate_b(x, r, b);
 
-	printf("Calculated b as ")
+	printf("Calculated b as ");
 	for (int i = 0; i < NCON; i++)
 	{
 		printf("%f\t", b[i]);
