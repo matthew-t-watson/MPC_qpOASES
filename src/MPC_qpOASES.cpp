@@ -27,12 +27,19 @@ int computeMPC(const double* x, const double* r, QP_res_t* QP_res, double* u)
 	int nWSR = 1000000; /* Not too sure what this means - maybe max iterations? */
 	double cpuTime = 0;
 
-//	qpOASES::Options opt;
-//	QP.setOptions(opt);
+	qpOASES::Options opt;
+	QP.setOptions(opt);
 
 	/* Calculate b */
 	double b[NCON];
 	calculate_b(x, r, b);
+
+	printf("Calculated b as ")
+	for (int i = 0; i < NCON; i++)
+	{
+		printf("%f\t", b[i]);
+	}
+	printf("\n");
 
 	/* Init QP */
 	int exitFlag = QP.init(H, g, A, NULL, NULL, NULL, b, nWSR, &cpuTime);
