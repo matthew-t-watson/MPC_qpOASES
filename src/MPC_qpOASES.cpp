@@ -22,7 +22,7 @@ int main()
 	/* Test routine */
 	QP_res_t QP_res;
 	double u[NU] = {0};
-	double x[]={0,0,0,0.2,0,0,0,0};
+	double x[]={0,1,0,0,0,0,0,0};
 
 	int exitFlag = computeMPC(QP, x, r0, &QP_res, u);
 }
@@ -43,8 +43,6 @@ int initMPC(qpOASES::QProblem& QP)
 	calculate_b(x0, r0, b);
 
 	/* create sparse matrices */
-	//qpOASES::SymSparseMat Hsp(H_NROWS, H_NCOLS, H_NCOLS, H);
-	//qpOASES::SparseMatrix Asp(A_NROWS, A_NCOLS, A_NCOLS, A);
 	qpOASES::SymSparseMat *Hsp = new qpOASES::SymSparseMat(H_NROWS, H_NCOLS, H_NCOLS, H);
 	qpOASES::SparseMatrix *Asp = new qpOASES::SymSparseMat(A_NROWS, A_NCOLS, A_NCOLS, A);
 
