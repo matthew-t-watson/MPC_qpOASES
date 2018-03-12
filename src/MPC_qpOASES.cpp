@@ -49,7 +49,7 @@ int initMPC(qpOASES::QProblem& QP)
 	Hsp.createDiagInfo();
 
 	/* Init QP */
-	int exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, nWSR, &cpuTime);
+	int exitFlag = QP.init(&Hsp, G, &Asp, NULL, NULL, NULL, b, nWSR, &cpuTime);
 
 	printf("exitFlag %i, cpu time %fs, nWSR = %i\n", exitFlag, cpuTime, nWSR);
 
