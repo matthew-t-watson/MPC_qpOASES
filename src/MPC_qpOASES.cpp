@@ -2,7 +2,8 @@
 #include <qpOASES.hpp>
 //#include "Eigen"
 #include "MPC_qpOASES.hpp"
-#include "MPC_consts.hpp"
+#include "MPC_double_consts.hpp"
+#include "MPC_int_consts.hpp"
 #include "calculate_u.h"
 #include "calculate_b.h"
 
