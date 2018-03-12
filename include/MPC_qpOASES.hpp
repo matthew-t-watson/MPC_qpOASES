@@ -14,7 +14,8 @@ typedef union {
 	};
 } QP_res_t;
 
-int computeMPC(const double* x, const double* r, QP_res_t* QP_res, double* u);
+int initMPC(const qpOASES::QProblem* QP);
+int computeMPC(const qpOASES::QProblem* QP, const double* x, const double* r, QP_res_t* QP_res, double* u);
 
 
 #endif
