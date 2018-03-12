@@ -6,7 +6,7 @@
 #include "calculate_u.h"
 #include "calculate_b.h"
 
-static const double g[NC*NU+NU+NS] = {0};
+static const double G[NC*NU+NU+NS] = {0};
 
 int main()
 {
@@ -28,6 +28,8 @@ int computeMPC(const double* x, const double* r, QP_res_t* QP_res, double* u)
 	double cpuTime = 0;
 
 	qpOASES::Options opt;
+	opt.setToMPC(); /*  Sets all options to values resulting in minimum solution time */
+	opt.print();
 	QP.setOptions(opt);
 
 	/* Calculate b */
@@ -42,7 +44,7 @@ int computeMPC(const double* x, const double* r, QP_res_t* QP_res, double* u)
 	printf("\n");
 
 	/* Init QP */
-	int exitFlag = QP.init(H, g, A, NULL, NULL, NULL, b, nWSR, &cpuTime);
+	int exitFlag = QP.init(H, G, A, NULL, NULL, NULL, b, nWSR, &cpuTime);
 
 	/* Get result */
 	QP.getPrimalSolution( QP_res->z );
