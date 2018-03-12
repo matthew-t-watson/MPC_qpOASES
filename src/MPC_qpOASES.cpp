@@ -49,7 +49,7 @@ int initMPC(qpOASES::QProblem& QP)
 //	printf("\n");
 
 	/* Init QP */
-	int exitFlag = QP.init(H, G, A, NULL, NULL, NULL, b, &nWSR, &cpuTime);
+	int exitFlag = QP.init(H, G, A, NULL, NULL, NULL, b, nWSR, &cpuTime);
 
 	printf("exitFlag %i, Cpu time %fs, nWSR = %i\n", exitFlag, cpuTime, nWSR);
 
@@ -72,7 +72,7 @@ int computeMPC(qpOASES::QProblem& QP, const double* x, const double* r, QP_res_t
 	/* Compute hotstarted QP */
 	int nWSR = 1000000;
 	double cpuTime = 0;
-	int exitFlag = QP.hotstart(G, NULL, NULL, NULL, b, &nWSR, &cpuTime);
+	int exitFlag = QP.hotstart(G, NULL, NULL, NULL, b, nWSR, &cpuTime);
 
 	/* Get result */
 	QP.getPrimalSolution( QP_res->z );
