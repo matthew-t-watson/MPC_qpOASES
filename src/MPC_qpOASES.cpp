@@ -43,12 +43,17 @@ int initMPC(qpOASES::QProblem& QP)
 	calculate_b(x0, r0, b);
 
 	/* create sparse matrices */
-	qpOASES::SymSparseMat Hsp(H_NROWS, H_NCOLS, H_NCOLS, H);
-	qpOASES::SparseMatrix Asp(A_NROWS, A_NCOLS, A_NCOLS, A);
+	//qpOASES::SymSparseMat Hsp(H_NROWS, H_NCOLS, H_NCOLS, H);
+	//qpOASES::SparseMatrix Asp(A_NROWS, A_NCOLS, A_NCOLS, A);
+	qpOASES::SymSparseMat *Hsp = new qpOASES::SymSparseMat(H_NROWS, H_NCOLS, H_NCOLS, H);
+	qpOASES::SparseMatrix *Asp = new qpOASES::SymSparseMat(A_NROWS, A_NCOLS, A_NCOLS, A);
 
 	//Hsp.createDiagInfo();
 
-	/* Init QP */
+	/* Init QP - dense */
+	//int exitFlag = QP.init(H, G, A, NULL, NULL, NULL, b, nWSR, &cpuTime);
+
+	/* Init QP - sparse */
 	int exitFlag = QP.init(&Hsp, G, &Asp, NULL, NULL, NULL, b, nWSR, &cpuTime);
 
 	printf("exitFlag %i, cpu time %fs, nWSR = %i\n", exitFlag, cpuTime, nWSR);
