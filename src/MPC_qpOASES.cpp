@@ -55,7 +55,7 @@ int initMPC(qpOASES::QProblem& QP)
 	return exitFlag;
 }
 
-int computeMPC(qpOASES::QProblem* QP, const double* x, const double* r, QP_res_t* QP_res, double* u)
+int computeMPC(qpOASES::QProblem& QP, const double* x, const double* r, QP_res_t* QP_res, double* u)
 {
 	/* Calculate b */
 	double b[NCON];
@@ -69,6 +69,8 @@ int computeMPC(qpOASES::QProblem* QP, const double* x, const double* r, QP_res_t
 //	printf("\n");
 
 	/* Compute hotstarted QP */
+	int nWSR = 1000000;
+	double cpuTime = 0;
 	int exitFlag = QP.hotstart(G, NULL, NULL, NULL, b, nWSR, &cpuTime);
 
 	/* Get result */
