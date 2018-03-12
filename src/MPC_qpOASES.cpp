@@ -8,7 +8,7 @@
 #include "calculate_b.h"
 
 static const double G[NC*NU+NU+NS] = {0};
-static const double x0[] = {0,0,0,0,0,0,0,0};
+static const double x0[] = {0,1,0,0,0,0,0,0};
 static const double r0[NR*NX] = {0};
 
 int main()
@@ -45,9 +45,6 @@ int initMPC(qpOASES::QProblem& QP)
 	/* create sparse matrices */
 	qpOASES::SymSparseMat Hsp(H_NROWS, H_NCOLS, H_NCOLS, H);
 	qpOASES::SparseMatrix Asp(A_NROWS, A_NCOLS, A_NCOLS, A);
-
-	Hsp.print("H");
-	Asp.print("A");
 
 	//Hsp.createDiagInfo();
 
