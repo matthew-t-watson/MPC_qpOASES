@@ -45,8 +45,8 @@ int initMPC(qpOASES::QProblem& QP)
 	/* create sparse matrices */
 //	qpOASES::SymSparseMat Hsp(HR, HC, Hi, Hj, Ha);
 //	qpOASES::SparseMatrix Asp(AR, AC, Ai, Aj, Aa);
-	qpOASES::SymSparseMat Hsp(HR, HC, HR, H);
-	qpOASES::SparseMatrix Asp(AR, AC, AR, A);
+	qpOASES::SymSparseMat Hsp(H_NROWS, H_NCOLS, H_NCOLS, H);
+	qpOASES::SparseMatrix Asp(A_NROWS, A_NCOLS, A_NCOLS, A);
 
 	Hsp.print("H");
 	//Asp.print("A");
