@@ -41,12 +41,12 @@ int initMPC(const qpOASES::QProblem* QP)
 	double b[NCON];
 	calculate_b(x0, r0, b);
 
-	printf("Calculated b as ");
-	for (int i = 0; i < NCON; i++)
-	{
-		printf("%f\t", b[i]);
-	}
-	printf("\n");
+//	printf("Calculated b as ");
+//	for (int i = 0; i < NCON; i++)
+//	{
+//		printf("%f\t", b[i]);
+//	}
+//	printf("\n");
 
 	/* Init QP */
 	int exitFlag = QP->init(H, G, A, NULL, NULL, NULL, b, nWSR, &cpuTime);
@@ -62,12 +62,12 @@ int computeMPC(const qpOASES::QProblem* QP, const double* x, const double* r, QP
 	double b[NCON];
 	calculate_b(x, r, b);
 
-	printf("Calculated b as ");
-	for (int i = 0; i < NCON; i++)
-	{
-		printf("%f\t", b[i]);
-	}
-	printf("\n");
+//	printf("Calculated b as ");
+//	for (int i = 0; i < NCON; i++)
+//	{
+//		printf("%f\t", b[i]);
+//	}
+//	printf("\n");
 
 	/* Compute hotstarted QP */
 	int exitFlag = QP.hotstart(G, NULL, NULL, NULL, b, nWSR, &cpuTime);
