@@ -11,7 +11,7 @@ static const double G[NC*NU+NU+NS] = {0};
 static const double x0[] = {0,0,0,0,0,0,0,0};
 static const double r0[NR*NX] = {0};
 
-//#define SPARSE_MATRICES
+#define SPARSE_MATRICES
 
 int main()
 {
@@ -36,7 +36,7 @@ int initMPC(qpOASES::QProblem& QP)
 
 	qpOASES::Options opt;
 	opt.setToMPC(); /*  Sets all options to values resulting in minimum solution time */
-	//opt.printLevel = qpOASES::PL_HIGH;
+	opt.printLevel = qpOASES::PL_LOW;
 	opt.print();
 	QP.setOptions(opt);
 
