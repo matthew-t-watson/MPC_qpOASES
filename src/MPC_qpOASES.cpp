@@ -29,8 +29,8 @@ int main()
 
 int initMPC(qpOASES::QProblem& QP)
 {
-	int nWSR = 100;
-	double cpuTime = 10;
+	int nWSR = 10000;
+	double cpuTime = 100;
 
 	qpOASES::Options opt;
 	opt.setToMPC(); /*  Sets all options to values resulting in minimum solution time */
