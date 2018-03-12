@@ -64,10 +64,10 @@ int getPacket()
 
 int sendPacket()
 {
-	//now reply the client with the same data
-	if (sendto(s, buf, recv_len, 0, (struct sockaddr*) &si_myrio, slen) == -1)
-	{
-		printf("Error in sendto, errno %i\n", errno);
-		return errno;
-	}
+//	//now reply the client with the same data
+//	if (sendto(s, buf, recv_len, 0, (struct sockaddr*) &si_myrio, slen) == -1)
+//	{
+//		printf("Error in sendto, errno %i\n", errno);
+//		return errno;
+//	}
 }
