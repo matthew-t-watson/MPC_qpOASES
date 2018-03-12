@@ -33,7 +33,7 @@ int initMPC(qpOASES::QProblem& QP)
 
 	qpOASES::Options opt;
 	opt.setToMPC(); /*  Sets all options to values resulting in minimum solution time */
-	opt.printLevel = qpOASES::PL_HIGH;
+	//opt.printLevel = qpOASES::PL_HIGH;
 	opt.print();
 	QP.setOptions(opt);
 
