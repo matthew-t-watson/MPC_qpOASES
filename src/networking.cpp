@@ -60,6 +60,8 @@ int getPacket()
 	//print details of the client/peer and the data received
 	printf("Received packet from %s:%d\n", inet_ntoa(si_myrio.sin_addr), ntohs(si_myrio.sin_port));
 	printf("Data: %s\n" , buf);
+
+	return 0;
 }
 
 int sendPacket()
