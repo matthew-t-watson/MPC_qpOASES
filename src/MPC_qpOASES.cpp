@@ -43,15 +43,13 @@ int initMPC(qpOASES::QProblem& QP)
 	calculate_b(x0, r0, b);
 
 	/* create sparse matrices */
-//	qpOASES::SymSparseMat Hsp(HR, HC, Hi, Hj, Ha);
-//	qpOASES::SparseMatrix Asp(AR, AC, Ai, Aj, Aa);
 	qpOASES::SymSparseMat Hsp(H_NROWS, H_NCOLS, H_NCOLS, H);
 	qpOASES::SparseMatrix Asp(A_NROWS, A_NCOLS, A_NCOLS, A);
 
 	Hsp.print("H");
-	//Asp.print("A");
+	Asp.print("A");
 
-	Hsp.createDiagInfo();
+	//Hsp.createDiagInfo();
 
 	/* Init QP */
 	int exitFlag = QP.init(&Hsp, G, &Asp, NULL, NULL, NULL, b, nWSR, &cpuTime);
