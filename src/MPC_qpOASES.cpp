@@ -34,7 +34,9 @@ int main()
 	{
 		return 1;
 	}
-	getPacket();
+	while(1)
+	{
+	getPacket();}
 }
 
 
