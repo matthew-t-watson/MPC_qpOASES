@@ -12,12 +12,14 @@
 
 static const odroidAddr = "192.168.0.2";
 
+
+struct sockaddr_in si_odroid, si_myrio;
+int s, i, slen = sizeof(si_odroid), recv_len;
+char buf[BUFLEN];
+
 int configureSockets()
 {
-	struct sockaddr_in si_odroid, si_myrio;
-
-	int s, i, slen = sizeof(si_odroid), recv_len;
-	char buf[BUFLEN];
+	slen = sizeof(si_odroid);
 
 	//create a UDP socket
 	if ((s = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1)
