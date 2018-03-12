@@ -46,6 +46,9 @@ int initMPC(qpOASES::QProblem& QP)
 	qpOASES::SymSparseMat Hsp(HR, HC, Hi, Hj, Ha);
 	qpOASES::SparseMatrix Asp(AR, AC, Ai, Aj, Aa);
 
+	Hsp.print("H");
+	Asp.rint("A");
+
 	Hsp.createDiagInfo();
 
 	/* Init QP */
