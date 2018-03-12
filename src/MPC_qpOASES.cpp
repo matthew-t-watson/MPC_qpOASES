@@ -46,10 +46,12 @@ int initMPC(qpOASES::QProblem& QP)
 	qpOASES::SymSparseMat Hsp(HR, HC, Hi, Hj, Ha);
 	qpOASES::SymSparseMat Asp(AR, AC, Ai, Aj, Aa);
 
+	Hsp.createDiagInfo();
+
 	/* Init QP */
 	int exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, nWSR, &cpuTime);
 
-	printf("exitFlag %i, Cpu time %fs, nWSR = %i\n", exitFlag, cpuTime, nWSR);
+	printf("exitFlag %i, cpu time %fs, nWSR = %i\n", exitFlag, cpuTime, nWSR);
 
 	return exitFlag;
 }
@@ -71,7 +73,7 @@ int computeMPC(qpOASES::QProblem& QP, const double* x, const double* r, QP_res_t
 	/* Calculate u */
 	calculate_u(x, r, QP_res->c, u);
 
-	printf("exitFlag %i, Cpu time %fs, nWSR = %i\n", exitFlag, cpuTime, nWSR);
+	printf("exitFlag %i, cpu time %fs, nWSR = %i\n", exitFlag, cpuTime, nWSR);
 
 	return exitFlag;
 }
