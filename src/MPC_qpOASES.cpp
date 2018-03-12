@@ -47,7 +47,7 @@ int initMPC(qpOASES::QProblem& QP)
 	qpOASES::SparseMatrix Asp(AR, AC, Ai, Aj, Aa);
 
 	Hsp.print("H");
-	Asp.rint("A");
+	Asp.print("A");
 
 	Hsp.createDiagInfo();
 
