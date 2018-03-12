@@ -6,6 +6,7 @@
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <arpa/inet.h>
+#include <errno.h>
 
 
 #define BUFLEN 512  /* Max length of buffer */
@@ -24,7 +25,8 @@ int configureSockets()
 	//create a UDP socket
 	if ((s = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP)) == -1)
 	{
-		printf("Failed to create socket\n");
+		printf("Failed to create socket, errno %i\n", errno);
+		return errno;
 	}
 
 	// zero out the structure
@@ -38,8 +40,10 @@ int configureSockets()
 	//bind socket to port
 	if (bind(s, (struct sockaddr*) &si_odroid, sizeof(si_odroid)) == -1)
 	{
-		printf("Failed to bind socket to port\n");
+		printf("Failed to bind socket to port, errno %i\n", errno);
+		return errno;
 	}
+	return 0;
 }
 
 int getPacket()
@@ -49,7 +53,8 @@ int getPacket()
 	//try to receive some data, this is a blocking call
 	if ((recv_len = recvfrom(s, buf, BUFLEN, 0, (struct sockaddr *) &si_myrio, &slen)) == -1)
 	{
-		printf("Error in recvfrom\n");
+		printf("Error in recvfrom, errno %i\n", errno);
+		return errno;
 	}
 
 	//print details of the client/peer and the data received
@@ -59,6 +64,7 @@ int getPacket()
 	//now reply the client with the same data
 	if (sendto(s, buf, recv_len, 0, (struct sockaddr*) &si_myrio, slen) == -1)
 	{
-		printf("Error in sendto\n");
+		printf("Error in sendto, errno %i\n", errno);
+		return errno;
 	}
 }

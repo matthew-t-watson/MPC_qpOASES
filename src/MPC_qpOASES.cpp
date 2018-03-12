@@ -29,7 +29,10 @@ int main()
 
 	int exitFlag = computeMPC(QP, x, r0, &QP_res, u);
 
-	configureSockets();
+	if (configureSockets() > 0)
+	{
+		return errno;
+	}
 	getPacket();
 }
 
