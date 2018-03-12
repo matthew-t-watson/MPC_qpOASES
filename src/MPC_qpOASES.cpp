@@ -7,6 +7,7 @@
 #include "calculate_u.h"
 #include "calculate_b.h"
 #include "networking.hpp"
+#include <errno.h>
 
 static const double G[NC*NU+NU+NS] = {0};
 static const double x0[] = {0,0,0,0,0,0,0,0};
@@ -31,7 +32,7 @@ int main()
 
 	if (configureSockets() > 0)
 	{
-		return errno;
+		return 1;
 	}
 	getPacket();
 }
