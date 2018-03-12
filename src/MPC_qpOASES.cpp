@@ -41,12 +41,9 @@ int initMPC(qpOASES::QProblem& QP)
 	double b[NCON];
 	calculate_b(x0, r0, b);
 
-//	printf("Calculated b as ");
-//	for (int i = 0; i < NCON; i++)
-//	{
-//		printf("%f\t", b[i]);
-//	}
-//	printf("\n");
+	/* create sparse matrices */
+	H = SymSparseMat(Hr, Hc, Hi, Hj, Ha);
+	A = SparseMatrix(Ar, Ac, Ai, Aj, Aa);
 
 	/* Init QP */
 	int exitFlag = QP.init(H, G, A, NULL, NULL, NULL, b, nWSR, &cpuTime);
@@ -61,13 +58,6 @@ int computeMPC(qpOASES::QProblem& QP, const double* x, const double* r, QP_res_t
 	/* Calculate b */
 	double b[NCON];
 	calculate_b(x, r, b);
-
-//	printf("Calculated b as ");
-//	for (int i = 0; i < NCON; i++)
-//	{
-//		printf("%f\t", b[i]);
-//	}
-//	printf("\n");
 
 	/* Compute hotstarted QP */
 	int nWSR = 100;
