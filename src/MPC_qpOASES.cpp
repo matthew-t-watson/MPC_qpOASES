@@ -16,17 +16,16 @@ int main()
 	qpOASES::QProblem QP(NC*NU+NU+NS,NCON);
 
 	/* Initialise QP */
-	initMPC(&QP);
+	initMPC(QP);
 
 	/* Test routine */
 	QP_res_t QP_res;
 	double u[NU] = {0};
 
-	int exitFlag = computeMPC(&QP, x0, r, &QP_res, u);
-	exitFlag = computeMPC(&QP, x0, r, &QP_res, u);
+	int exitFlag = computeMPC(QP, x0, r0, &QP_res, u);
 }
 
-int initMPC(const qpOASES::QProblem* QP)
+int initMPC(const qpOASES::QProblem& QP)
 {
 	int nWSR = 1000000;
 	double cpuTime = 0;
@@ -35,7 +34,7 @@ int initMPC(const qpOASES::QProblem* QP)
 	opt.setToMPC(); /*  Sets all options to values resulting in minimum solution time */
 	opt.print();
 	opt.printLevel = PL_HIGH;
-	QP->setOptions(opt);
+	QP.setOptions(opt);
 
 	/* Calculate b */
 	double b[NCON];
@@ -49,7 +48,7 @@ int initMPC(const qpOASES::QProblem* QP)
 //	printf("\n");
 
 	/* Init QP */
-	int exitFlag = QP->init(H, G, A, NULL, NULL, NULL, b, nWSR, &cpuTime);
+	int exitFlag = QP.init(H, G, A, NULL, NULL, NULL, b, nWSR, &cpuTime);
 
 	printf("exitFlag %i, Cpu time %fs, nWSR = %i\n", exitFlag, cpuTime, nWSR);
 
