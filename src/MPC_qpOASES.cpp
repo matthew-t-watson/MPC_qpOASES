@@ -29,7 +29,7 @@ int main()
 int initMPC(qpOASES::QProblem& QP)
 {
 	int nWSR = 100;
-	double cpuTime = 0;
+	double cpuTime = 10;
 
 	qpOASES::Options opt;
 	opt.setToMPC(); /*  Sets all options to values resulting in minimum solution time */
@@ -71,7 +71,7 @@ int computeMPC(qpOASES::QProblem& QP, const double* x, const double* r, QP_res_t
 
 	/* Compute hotstarted QP */
 	int nWSR = 100;
-	double cpuTime = 0;
+	double cpuTime = 10;
 	int exitFlag = QP.hotstart(G, NULL, NULL, NULL, b, nWSR, &cpuTime);
 
 	/* Get result */
