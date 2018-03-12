@@ -39,6 +39,8 @@ int initMPC(qpOASES::QProblem& QP)
 	opt.setToMPC(); /*  Sets all options to values resulting in minimum solution time */
 	opt.printLevel = qpOASES::PL_LOW;
 	opt.print();
+	opt.enableEqualities = 0;
+	opt.enableInertiaCorrection = 0;
 	QP.setOptions(opt);
 
 	/* Calculate b */
