@@ -30,6 +30,7 @@ int computeMPC(const double* x, const double* r, QP_res_t* QP_res, double* u)
 	qpOASES::Options opt;
 	opt.setToMPC(); /*  Sets all options to values resulting in minimum solution time */
 	opt.print();
+	opt.printLevel = PL_HIGH;
 	QP.setOptions(opt);
 
 	/* Calculate b */
