@@ -42,8 +42,8 @@ int initMPC(qpOASES::QProblem& QP)
 	calculate_b(x0, r0, b);
 
 	/* create sparse matrices */
-	H = qpOASES::SymSparseMat(Hr, Hc, Hi, Hj, Ha);
-	A = qpOASES::SparseMatrix(Ar, Ac, Ai, Aj, Aa);
+	H = qpOASES::SymSparseMat(HR, HC, Hi, Hj, Ha);
+	A = qpOASES::SparseMatrix(AR, AC, Ai, Aj, Aa);
 
 	/* Init QP */
 	int exitFlag = QP.init(H, G, A, NULL, NULL, NULL, b, nWSR, &cpuTime);
