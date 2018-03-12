@@ -16,7 +16,7 @@ static const char odroidAddr[] = "192.168.0.2";
 
 struct sockaddr_in si_odroid, si_myrio;
 int s, i, recv_len;
-size_t slen = sizeof(si_odroid);
+unsigned int slen = sizeof(si_odroid);
 char buf[BUFLEN];
 
 int configureSockets()
