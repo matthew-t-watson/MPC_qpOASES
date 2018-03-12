@@ -5,7 +5,7 @@
  * File: calculate_b.c
  *
  * MATLAB Coder version            : 3.3
- * C/C++ source code generated on  : 12-Mar-2018 16:01:07
+ * C/C++ source code generated on  : 12-Mar-2018 16:20:21
  */
 
 /* Include Files */
