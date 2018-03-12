@@ -36,7 +36,11 @@ int main()
 	}
 	while(1)
 	{
-	getPacket();}
+		if (getPacket() > 0)
+		{
+			return 1;
+		}
+	}
 }
 
 
