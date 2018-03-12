@@ -5,7 +5,7 @@
  * File: calculate_u.c
  *
  * MATLAB Coder version            : 3.3
- * C/C++ source code generated on  : 12-Mar-2018 15:02:20
+ * C/C++ source code generated on  : 12-Mar-2018 15:33:40
  */
 
 /* Include Files */

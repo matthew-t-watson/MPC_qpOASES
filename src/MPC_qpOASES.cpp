@@ -16,7 +16,7 @@ static const double r0[NR*NX] = {0};
 int main()
 {
 	/* Allocate QProblem object */
-	qpOASES::QProblem QP(NC*NU+NU+NS,NCON);
+	qpOASES::QProblem QP(NC*NU+NU+NS,NCON,qpOASES::HST_POSDEF);
 
 	/* Initialise QP */
 	initMPC(QP);
