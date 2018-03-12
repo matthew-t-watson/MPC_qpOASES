@@ -54,7 +54,7 @@ int initMPC(qpOASES::QProblem& QP)
 	//int exitFlag = QP.init(H, G, A, NULL, NULL, NULL, b, nWSR, &cpuTime);
 
 	/* Init QP - sparse */
-	int exitFlag = QP.init(&Hsp, G, &Asp, NULL, NULL, NULL, b, nWSR, &cpuTime);
+	int exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, nWSR, &cpuTime);
 
 	printf("exitFlag %i, cpu time %fs, nWSR = %i\n", exitFlag, cpuTime, nWSR);
 
