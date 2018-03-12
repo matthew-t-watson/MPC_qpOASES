@@ -12,7 +12,7 @@
 #define BUFLEN 512  /* Max length of buffer */
 #define PORT 8888
 
-static const char odroidAddr[] = "192.168.0.2";
+static const char odroidAddr[] = "143.167.51.120";
 
 
 struct sockaddr_in si_odroid, si_myrio;
