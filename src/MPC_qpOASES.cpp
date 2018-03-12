@@ -6,12 +6,13 @@
 #include "MPC_int_consts.hpp"
 #include "calculate_u.h"
 #include "calculate_b.h"
+#include "networking.hpp"
 
 static const double G[NC*NU+NU+NS] = {0};
 static const double x0[] = {0,0,0,0,0,0,0,0};
 static const double r0[NR*NX] = {0};
 
-#define SPARSE_MATRICES
+#define USE_SPARSE_MATRICES
 
 int main()
 {
@@ -26,9 +27,13 @@ int main()
 	double u[NU] = {0};
 	double x[]={0,1,0,0,0,0,0,0};
 
-	for(int i = 0; i<5; i++)
-		int exitFlag = computeMPC(QP, x, r0, &QP_res, u);
+	int exitFlag = computeMPC(QP, x, r0, &QP_res, u);
+
+	configureSockets();
+	getPacket();
 }
+
+
 
 int initMPC(qpOASES::QProblem& QP)
 {
@@ -48,7 +53,7 @@ int initMPC(qpOASES::QProblem& QP)
 	double b[NCON];
 	calculate_b(x0, r0, b);
 
-#ifdef SPARSE_MATRICES
+#ifdef USE_SPARSE_MATRICES
 	/* create sparse matrices */
 	qpOASES::SymSparseMat *Hsp = new qpOASES::SymSparseMat(H_NROWS, H_NCOLS, H_NCOLS, H);
 	qpOASES::SparseMatrix *Asp = new qpOASES::SymSparseMat(A_NROWS, A_NCOLS, A_NCOLS, A);
