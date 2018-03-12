@@ -25,7 +25,7 @@ int main()
 	int exitFlag = computeMPC(QP, x0, r0, &QP_res, u);
 }
 
-int initMPC(const qpOASES::QProblem& QP)
+int initMPC(qpOASES::QProblem& QP)
 {
 	int nWSR = 1000000;
 	double cpuTime = 0;
@@ -33,7 +33,7 @@ int initMPC(const qpOASES::QProblem& QP)
 	qpOASES::Options opt;
 	opt.setToMPC(); /*  Sets all options to values resulting in minimum solution time */
 	opt.print();
-	opt.printLevel = PL_HIGH;
+	opt.printLevel = qpOASES::PL_HIGH;
 	QP.setOptions(opt);
 
 	/* Calculate b */
@@ -55,7 +55,7 @@ int initMPC(const qpOASES::QProblem& QP)
 	return exitFlag;
 }
 
-int computeMPC(const qpOASES::QProblem* QP, const double* x, const double* r, QP_res_t* QP_res, double* u)
+int computeMPC(qpOASES::QProblem* QP, const double* x, const double* r, QP_res_t* QP_res, double* u)
 {
 	/* Calculate b */
 	double b[NCON];
