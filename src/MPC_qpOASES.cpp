@@ -28,13 +28,13 @@ int main()
 
 int initMPC(qpOASES::QProblem& QP)
 {
-	int nWSR = 1000000;
+	int nWSR = 100;
 	double cpuTime = 0;
 
 	qpOASES::Options opt;
 	opt.setToMPC(); /*  Sets all options to values resulting in minimum solution time */
-	opt.print();
 	opt.printLevel = qpOASES::PL_HIGH;
+	opt.print();
 	QP.setOptions(opt);
 
 	/* Calculate b */
@@ -70,7 +70,7 @@ int computeMPC(qpOASES::QProblem& QP, const double* x, const double* r, QP_res_t
 //	printf("\n");
 
 	/* Compute hotstarted QP */
-	int nWSR = 1000000;
+	int nWSR = 100;
 	double cpuTime = 0;
 	int exitFlag = QP.hotstart(G, NULL, NULL, NULL, b, nWSR, &cpuTime);
 
