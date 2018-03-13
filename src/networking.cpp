@@ -66,8 +66,19 @@ int getPacket(MPCPacketParams_t& buf)
 		return errno;
 	}
 
-	printf("Received data with initial state x=[%f,%f,%f,%f,%f,%f,%f,%f]\n",
-			buf.x[0], buf.x[1], buf.x[2], buf.x[3], buf.x[4], buf.x[5], buf.x[6], buf.x[7]);
+	printf("Received data with id %i, initial state x=[%f,%f,%f,%f,%f,%f,%f,%f], r=[",
+			buf.id, buf.x[0], buf.x[1], buf.x[2], buf.x[3], buf.x[4], buf.x[5], buf.x[6], buf.x[7]);
+
+	for (int i=0; i<NR; i++)
+	{
+		for (int j=0; j<NX; j++)
+		{
+			printf("\t%f", buf.r[i*NX+j]);
+		}
+		printf("\n");
+	}
+	printf("]\n");
+
 
 	return 0;
 }
@@ -80,7 +91,7 @@ int sendPacket(MPCPacketResult_t& data)
 		printf("Error in sendto, errno %i\n", errno);
 		return errno;
 	}
-	printf("Sent %u bytes", sizeof(data));
+	//printf("Sent %u bytes", sizeof(data));
 	return 0;
 }
 
