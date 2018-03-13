@@ -80,7 +80,7 @@ int sendPacket(MPCPacketResult_t& data)
 		printf("Error in sendto, errno %i\n", errno);
 		return errno;
 	}
-	printf("Sent %i bytes", sizeof(data));
+	printf("Sent %u bytes", sizeof(data));
 	return 0;
 }
 
