@@ -37,7 +37,7 @@ int main()
 	MPCPacketResult_t MPCRes;
 	while (1)
 	{
-		if (getPacket(&MPCParams) > 0)
+		if (getPacket(MPCParams) > 0)
 		{
 			return 1;
 		}
