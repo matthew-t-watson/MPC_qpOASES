@@ -42,7 +42,7 @@ int configureSockets()
 	si_odroid.sin_addr.s_addr = htonl(INADDR_ANY);
 	inet_pton(AF_INET, odroidAddr, &(si_odroid.sin_addr));
 
-	char[64] ip;
+	char ip[64];
 
 	getInterfaceIP(ip,"eth0");
 
