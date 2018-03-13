@@ -87,21 +87,21 @@ int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult
 {
 	/* Calculate b */
 	double b[NCON];
-	calculate_b(params->x, params->r, b);
+	calculate_b(params.x, params.r, b);
 
 	/* Compute hotstarted QP */
-	res->nWSR = 1000;
-	res->tExec = 10;
-	res->exitFlag = QP.hotstart(G, NULL, NULL, NULL, b, res->nWSR, &res->tExec);
+	res.nWSR = 1000;
+	res.tExec = 10;
+	res.exitFlag = QP.hotstart(G, NULL, NULL, NULL, b, res.nWSR, &res.tExec);
 
 	/* Get result */
-	QP.getPrimalSolution( res->z );
+	QP.getPrimalSolution( res.z );
 
 	/* Calculate u */
-	calculate_u(params->x, params->r, res->c, res->u);
+	calculate_u(params.x, params.r, res.c, res.u);
 
-	printf("exitFlag %i, cpu time %fs, nWSR = %i\n", res->exitFlag, res->tExec, res->nWSR);
+	printf("exitFlag %i, cpu time %fs, nWSR = %i\n", res.exitFlag, res.tExec, res.nWSR);
 
-	return res->exitFlag;
+	return res.exitFlag;
 }
 
