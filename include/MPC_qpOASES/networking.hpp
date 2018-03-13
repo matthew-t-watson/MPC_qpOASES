@@ -22,7 +22,7 @@ typedef struct
 			double s[NS];
 		};
 	};
-	double tExec;
+	double u[NU], tExec;
 	int nWSR, id, exitFlag;
 } MPCPacketResult_t;
 
