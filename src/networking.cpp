@@ -16,6 +16,7 @@
 
 #define PORT 8888
 
+int getInterfaceIP(char* ip, const char* interface);
 
 
 struct sockaddr_in si_odroid, si_myrio;
