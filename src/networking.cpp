@@ -37,9 +37,14 @@ int configureSockets()
 	memset((char *) &si_odroid, 0, sizeof(si_odroid));
 
 	char eth0Addr[20];
-	getInterfaceIP(eth0Addr,"eth0");
-
-	printf("eth0 IP is %s\n", eth0Addr);
+	if (getInterfaceIP(eth0Addr,"eth0") != EXIT_SUCCESS)
+	{
+		printf("Failed to obtain eth0 IP\n");
+	}
+	else
+	{
+		printf("eth0 IP is %s\n", eth0Addr);
+	}
 
 	si_odroid.sin_family = AF_INET;
 	si_odroid.sin_port = htons(PORT);
