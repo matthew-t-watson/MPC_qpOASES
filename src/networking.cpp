@@ -66,7 +66,7 @@ int getPacket(MPCPacketParams_t& buf)
 		return errno;
 	}
 
-	printf("Received data with id %i, initial state x=[");
+	printf("Received data with id %il, initial state x=[", buf.id);
 	for (int i = 0; i < NX; i++)
 	{
 		printf("\t%e", buf.x[i]);
