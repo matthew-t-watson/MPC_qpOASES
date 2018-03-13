@@ -3,16 +3,17 @@
 #define NETWORKING_H
 
 #include "MPC_defines.hpp"
+#include <stdint.h>
 
 typedef struct
 {
-	int id;
+	int32_t id;
 	double x[NX], r[NX*NR];
 } MPCPacketParams_t;
 
 typedef struct
 {
-	int id, nWSR, exitFlag;
+	int32_t id, nWSR, exitFlag;
 	union
 	{
 		double z[NC * NU + NU + NS];
