@@ -86,6 +86,7 @@ int getInterfaceIP(char* ip, const char* interface)
 {
 	struct ifaddrs *ifaddr, *ifa;
 	int family, s, n;
+	*ip = 0;
 
 	if (getifaddrs(&ifaddr) == -1)
 	{
@@ -112,6 +113,10 @@ int getInterfaceIP(char* ip, const char* interface)
 			}
 			break;
 		}
+	}
+	if (strlen(ip) == 0)
+	{
+		printf("Failed to determine eth0 IP\n");
 	}
 
 	freeifaddrs(ifaddr);
