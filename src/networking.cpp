@@ -42,7 +42,9 @@ int configureSockets()
 	si_odroid.sin_addr.s_addr = htonl(INADDR_ANY);
 	inet_pton(AF_INET, odroidAddr, &(si_odroid.sin_addr));
 
-	getInterfaceIP(NULL,0,NULL);
+	char[64] ip;
+
+	getInterfaceIP(ip,"eth0");
 
 	/* bind socket to port */
 	if (bind(s, (struct sockaddr*) &si_odroid, sizeof(si_odroid)) == -1)
@@ -81,7 +83,7 @@ int sendPacket()
 //	}
 }
 
-int getInterfaceIP(char* ip, int len, const char* interface)
+int getInterfaceIP(char* ip, const char* interface)
 {
 	struct ifaddrs *ifaddr, *ifa;
 	int family, s, n;
@@ -100,23 +102,11 @@ int getInterfaceIP(char* ip, int len, const char* interface)
 
 		family = ifa->ifa_addr->sa_family;
 
-		/* Display interface name and family (including symbolic
-		 form of the latter for the common families) */
-
-		printf("%-8s %s (%d)\n", ifa->ifa_name,
-				(family == AF_PACKET) ? "AF_PACKET" :
-				(family == AF_INET) ? "AF_INET" :
-				(family == AF_INET6) ? "AF_INET6" : "???", family);
-
-		/* For an AF_INET* interface address, display the address */
-
-		if (family == AF_INET || family == AF_INET6)
+		if (strcmp(ifa->name, interface) != 0
+				&& ifa->ifa_addr->sa_family == AF_INET)
 		{
-			s = getnameinfo(ifa->ifa_addr,
-					(family == AF_INET) ?
-							sizeof(struct sockaddr_in) :
-							sizeof(struct sockaddr_in6), host, NI_MAXHOST, NULL,
-					0, NI_NUMERICHOST);
+			s = getnameinfo(ifa->ifa_addr, sizeof(struct sockaddr_in), ip,
+					NI_MAXHOST, NULL, 0, NI_NUMERICHOST);
 			if (s != 0)
 			{
 				printf("getnameinfo() failed: %s\n", gai_strerror(s));
@@ -125,15 +115,6 @@ int getInterfaceIP(char* ip, int len, const char* interface)
 
 			printf("\t\taddress: <%s>\n", host);
 
-		}
-		else if (family == AF_PACKET && ifa->ifa_data != NULL)
-		{
-			struct rtnl_link_stats *stats = (struct rtnl_link_stats*)ifa->ifa_data;
-
-			printf("\t\ttx_packets = %10u; rx_packets = %10u\n"
-					"\t\ttx_bytes   = %10u; rx_bytes   = %10u\n",
-					stats->tx_packets, stats->rx_packets, stats->tx_bytes,
-					stats->rx_bytes);
 		}
 	}
 
