@@ -7,6 +7,11 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 #include <errno.h>
+#include <netdb.h>
+#include <ifaddrs.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <linux/if_link.h>
 
 
 #define BUFLEN 512  /* Max length of buffer */
