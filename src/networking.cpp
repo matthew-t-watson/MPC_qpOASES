@@ -76,7 +76,7 @@ int getPacket(MPCPacketParams_t& buf)
 int sendPacket(MPCPacketResult_t& data)
 {
 	//now reply the client with the same data
-	if (sendto(s, data, sizeof(data), 0, (struct sockaddr*) &si_myrio, slen) == -1)
+	if (sendto(s, &data, sizeof(data), 0, (struct sockaddr*) &si_myrio, slen) == -1)
 	{
 		printf("Error in sendto, errno %i\n", errno);
 		return errno;
