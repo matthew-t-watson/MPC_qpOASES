@@ -27,7 +27,7 @@ typedef struct
 } MPCPacketResult_t;
 
 int configureSockets();
-int getPacket(MPCPacketParams_t* buf);
-int sendPacket(MPCPacketResult_t* data);
+int getPacket(MPCPacketParams_t& buf);
+int sendPacket(MPCPacketResult_t& data);
 
 #endif

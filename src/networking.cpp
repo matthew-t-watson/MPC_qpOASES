@@ -57,7 +57,7 @@ int configureSockets()
 	return 0;
 }
 
-int getPacket(MPCPacketParams_t* buf)
+int getPacket(MPCPacketParams_t& buf)
 {
 	/* Blocking receive */
 	if ((recv_len = recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr *) &si_myrio, &slen)) == -1)
@@ -73,7 +73,7 @@ int getPacket(MPCPacketParams_t* buf)
 	return 0;
 }
 
-int sendPacket(MPCPacketResult_t* data)
+int sendPacket(MPCPacketResult_t& data)
 {
 	//now reply the client with the same data
 	if (sendto(s, data, sizeof(data), 0, (struct sockaddr*) &si_myrio, slen) == -1)

@@ -42,9 +42,9 @@ int main()
 			return 1;
 		}
 
-		computeMPC(QP, &MPCParams, &MPCRes);
+		computeMPC(QP, MPCParams, MPCRes);
 
-		if (sendPacket(&MPCRes) > 0)
+		if (sendPacket(MPCRes) > 0)
 		{
 			return 1;
 		}
