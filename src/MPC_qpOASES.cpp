@@ -20,15 +20,6 @@ int main()
 	/* Allocate QProblem object */
 	qpOASES::QProblem QP(NC*NU+NU+NS,NCON,qpOASES::HST_POSDEF);
 
-	/* Initialise QP */
-	initMPC(QP);
-
-	/* Test routine */
-	QP_res_t QP_res;
-	double u[NU] = {0};
-	double x[]={0,1,0,0,0,0,0,0};
-
-	int exitFlag = computeMPC(QP, x, r0, &QP_res, u);
 
 	if (configureSockets() > 0)
 	{
@@ -41,6 +32,17 @@ int main()
 			return 1;
 		}
 	}
+
+	/* Initialise QP */
+	initMPC(QP);
+
+	/* Test routine */
+	QP_res_t QP_res;
+	double u[NU] = {0};
+	double x[]={0,1,0,0,0,0,0,0};
+
+	int exitFlag = computeMPC(QP, x, r0, &QP_res, u);
+
 }
 
 
