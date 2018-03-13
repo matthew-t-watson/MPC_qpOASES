@@ -66,9 +66,8 @@ int getPacket(MPCPacketParams_t& buf)
 		return errno;
 	}
 
-//	//print details of the client/peer and the data received
-//	printf("Received packet from %s:%d\n", inet_ntoa(si_myrio.sin_addr), ntohs(si_myrio.sin_port));
-//	printf("Data: %s\n" , buf);
+	printf("Received data with initial state x=[%f,%f,%f,%f,%f,%f,%f,%f]",
+			buf->x[0], buf->x[1], buf->x[2], buf->x[3], buf->x[4], buf->x[5], buf->x[6], buf->x[7]);
 
 	return 0;
 }

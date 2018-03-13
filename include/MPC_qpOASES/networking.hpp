@@ -6,12 +6,13 @@
 
 typedef struct
 {
-	double x[NX], r[NX*NR];
 	int id;
+	double x[NX], r[NX*NR];
 } MPCPacketParams_t;
 
 typedef struct
 {
+	int id, nWSR, exitFlag;
 	union
 	{
 		double z[NC * NU + NU + NS];
@@ -23,7 +24,6 @@ typedef struct
 		};
 	};
 	double u[NU], tExec;
-	int nWSR, id, exitFlag;
 } MPCPacketResult_t;
 
 int configureSockets();
