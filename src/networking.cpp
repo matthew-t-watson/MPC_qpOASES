@@ -17,7 +17,6 @@
 #define BUFLEN 512  /* Max length of buffer */
 #define PORT 8888
 
-static const char odroidAddr[] = "143.167.51.120";
 
 
 struct sockaddr_in si_odroid, si_myrio;
@@ -37,14 +36,14 @@ int configureSockets()
 	// zero out the structure
 	memset((char *) &si_odroid, 0, sizeof(si_odroid));
 
+	char eth0Addr[20];
+	getInterfaceIP(eth0Addr,"eth0");
+
 	si_odroid.sin_family = AF_INET;
 	si_odroid.sin_port = htons(PORT);
 	si_odroid.sin_addr.s_addr = htonl(INADDR_ANY);
-	inet_pton(AF_INET, odroidAddr, &(si_odroid.sin_addr));
+	inet_pton(AF_INET, eth0Addr, &(si_odroid.sin_addr));
 
-	char ip[64];
-
-	getInterfaceIP(ip,"eth0");
 
 	/* bind socket to port */
 	if (bind(s, (struct sockaddr*) &si_odroid, sizeof(si_odroid)) == -1)
@@ -111,9 +110,7 @@ int getInterfaceIP(char* ip, const char* interface)
 				printf("getnameinfo() failed: %s\n", gai_strerror(s));
 				exit (EXIT_FAILURE);
 			}
-
-			printf("\t\taddress: <%s>\n", ip);
-
+			break;
 		}
 	}
 
