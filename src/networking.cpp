@@ -76,7 +76,7 @@ int getPacket(MPCPacketParams_t& buf)
 int sendPacket(MPCPacketResult_t& data)
 {
 	//now reply the client with the same data
-	if (sendto(s, &data, sizeof(data), 0, (struct sockaddr*) &si_myrio, slen) == -1)
+	if (sendto(s, data, sizeof(data), 0, (struct sockaddr*) &si_myrio, slen) == -1)
 	{
 		printf("Error in sendto, errno %i\n", errno);
 		return errno;
@@ -84,7 +84,7 @@ int sendPacket(MPCPacketResult_t& data)
 	return 0;
 }
 
-int getInterfaceIP(char& ip, const char& interface)
+int getInterfaceIP(char* ip, const char* interface)
 {
 	struct ifaddrs *ifaddr, *ifa;
 	int family, s, n;
@@ -103,7 +103,7 @@ int getInterfaceIP(char& ip, const char& interface)
 
 		family = ifa->ifa_addr->sa_family;
 
-		if (strcmp(ifa->ifa_name, &interface) == 0
+		if (strcmp(ifa->ifa_name, interface) == 0
 				&& ifa->ifa_addr->sa_family == AF_INET)
 		{
 			s = getnameinfo(ifa->ifa_addr, sizeof(struct sockaddr_in), ip,
