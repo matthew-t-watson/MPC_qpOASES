@@ -4,13 +4,13 @@
 
 #include "MPC_defines.hpp"
 
-typedef struct MPCPacketParams_t
+typedef struct
 {
 	double x[NX], r[NX*NR];
 	int id;
-};
+} MPCPacketParams_t;
 
-typedef struct MPCPacketResult_t
+typedef struct
 {
 	union
 	{
@@ -24,7 +24,7 @@ typedef struct MPCPacketResult_t
 	};
 	double tExec;
 	int nWSR, id, exitFlag;
-}
+} MPCPacketResult_t;
 
 int configureSockets();
 int getPacket();
