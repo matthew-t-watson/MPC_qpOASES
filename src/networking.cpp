@@ -87,7 +87,6 @@ int getInterfaceIP(char* ip, const char* interface)
 {
 	struct ifaddrs *ifaddr, *ifa;
 	int family, s, n;
-	char host[NI_MAXHOST];
 
 	if (getifaddrs(&ifaddr) == -1)
 	{
@@ -113,7 +112,7 @@ int getInterfaceIP(char* ip, const char* interface)
 				exit (EXIT_FAILURE);
 			}
 
-			printf("\t\taddress: <%s>\n", host);
+			printf("\t\taddress: <%s>\n", ip);
 
 		}
 	}
