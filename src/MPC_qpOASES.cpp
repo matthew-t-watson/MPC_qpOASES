@@ -9,6 +9,10 @@
 #include "networking.hpp"
 #include <errno.h>
 
+
+int initMPC(qpOASES::QProblem& QP);
+int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult_t& res);
+
 static const double G[NC*NU+NU+NS] = {0};
 static const double x0[] = {0,0,0,0,0,0,0,0};
 static const double r0[NR*NX] = {0};
