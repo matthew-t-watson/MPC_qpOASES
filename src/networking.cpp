@@ -128,7 +128,7 @@ int getInterfaceIP(char* ip, int len, const char* interface)
 		}
 		else if (family == AF_PACKET && ifa->ifa_data != NULL)
 		{
-			struct rtnl_link_stats *stats = ifa->ifa_data;
+			struct rtnl_link_stats *stats = &ifa->ifa_data;
 
 			printf("\t\ttx_packets = %10u; rx_packets = %10u\n"
 					"\t\ttx_bytes   = %10u; rx_bytes   = %10u\n",
