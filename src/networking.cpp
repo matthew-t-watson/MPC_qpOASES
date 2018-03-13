@@ -39,6 +39,8 @@ int configureSockets()
 	char eth0Addr[20];
 	getInterfaceIP(eth0Addr,"eth0");
 
+	printf("eth0 IP is %s\n", eth0Addr);
+
 	si_odroid.sin_family = AF_INET;
 	si_odroid.sin_port = htons(PORT);
 	si_odroid.sin_addr.s_addr = htonl(INADDR_ANY);
