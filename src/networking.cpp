@@ -37,7 +37,7 @@ int configureSockets()
 	memset((char *) &si_odroid, 0, sizeof(si_odroid));
 
 	char eth0Addr[20];
-	if (getInterfaceIP(eth0Addr,"eth0") != EXIT_SUCCESS)
+	if (getInterfaceIP(eth0Addr,"eth0") > 0)
 	{
 		printf("Failed to obtain eth0 IP\n");
 	}
@@ -116,7 +116,7 @@ int getInterfaceIP(char* ip, const char* interface)
 			if (s != 0)
 			{
 				printf("getnameinfo() failed: %s\n", gai_strerror(s));
-				exit (EXIT_FAILURE);
+				return 1;
 			}
 			break;
 		}
@@ -124,8 +124,9 @@ int getInterfaceIP(char* ip, const char* interface)
 	if (strlen(ip) == 0)
 	{
 		printf("Failed to determine eth0 IP\n");
+		return 1;
 	}
 
 	freeifaddrs(ifaddr);
-	exit (EXIT_SUCCESS);
+	return 0;
 }
