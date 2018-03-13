@@ -14,7 +14,6 @@
 #include <linux/if_link.h>
 
 
-#define BUFLEN 512  /* Max length of buffer */
 #define PORT 8888
 
 
@@ -22,7 +21,6 @@
 struct sockaddr_in si_odroid, si_myrio;
 int s, i, recv_len;
 unsigned int slen = sizeof(si_odroid);
-char buf[BUFLEN];
 
 int configureSockets()
 {
@@ -40,10 +38,7 @@ int configureSockets()
 	if (getInterfaceIP(eth0Addr,"eth0") > 0)
 	{
 		printf("Failed to obtain eth0 IP\n");
-	}
-	else
-	{
-		printf("eth0 IP is %s\n", eth0Addr);
+		return 1;
 	}
 
 	si_odroid.sin_family = AF_INET;
@@ -61,32 +56,31 @@ int configureSockets()
 	return 0;
 }
 
-int getPacket()
+int getPacket(MPCPacketParams_t* buf)
 {
-	printf("Waiting for data...\n");
-
-	//try to receive some data, this is a blocking call
-	if ((recv_len = recvfrom(s, buf, BUFLEN, 0, (struct sockaddr *) &si_myrio, &slen)) == -1)
+	/* Blocking receive */
+	if ((recv_len = recvfrom(s, buf, sizeof(buf), 0, (struct sockaddr *) &si_myrio, &slen)) == -1)
 	{
 		printf("Error in recvfrom, errno %i\n", errno);
 		return errno;
 	}
 
-	//print details of the client/peer and the data received
-	printf("Received packet from %s:%d\n", inet_ntoa(si_myrio.sin_addr), ntohs(si_myrio.sin_port));
-	printf("Data: %s\n" , buf);
+//	//print details of the client/peer and the data received
+//	printf("Received packet from %s:%d\n", inet_ntoa(si_myrio.sin_addr), ntohs(si_myrio.sin_port));
+//	printf("Data: %s\n" , buf);
 
 	return 0;
 }
 
-int sendPacket()
+int sendPacket(MPCPacketResult_t* data)
 {
-//	//now reply the client with the same data
-//	if (sendto(s, buf, recv_len, 0, (struct sockaddr*) &si_myrio, slen) == -1)
-//	{
-//		printf("Error in sendto, errno %i\n", errno);
-//		return errno;
-//	}
+	//now reply the client with the same data
+	if (sendto(s, data, sizeof(data), 0, (struct sockaddr*) &si_myrio, slen) == -1)
+	{
+		printf("Error in sendto, errno %i\n", errno);
+		return errno;
+	}
+	return 0;
 }
 
 int getInterfaceIP(char* ip, const char* interface)

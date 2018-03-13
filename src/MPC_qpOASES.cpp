@@ -20,31 +20,32 @@ int main()
 	/* Allocate QProblem object */
 	qpOASES::QProblem QP(NC*NU+NU+NS,NCON,qpOASES::HST_POSDEF);
 
+	/* Initialise QP */
+	initMPC(QP);
 
+	/* Configure UDP socket */
 	if (configureSockets() > 0)
 	{
 		return 1;
 	}
-	while(1)
+
+	MPCPacketParams_t MPCParams;
+	MPCPacketResult_t MPCRes;
+	while (1)
 	{
-		if (getPacket() > 0)
+		if (getPacket(&MPCParams) > 0)
+		{
+			return 1;
+		}
+
+		computeMPC(QP, &MPCParams, &MPCRes);
+
+		if (sendPacket(&MPCRes) > 0)
 		{
 			return 1;
 		}
 	}
-
-	/* Initialise QP */
-	initMPC(QP);
-
-	/* Test routine */
-	QP_res_t QP_res;
-	double u[NU] = {0};
-	double x[]={0,1,0,0,0,0,0,0};
-
-	int exitFlag = computeMPC(QP, x, r0, &QP_res, u);
-
 }
-
 
 
 int initMPC(qpOASES::QProblem& QP)
@@ -82,25 +83,25 @@ int initMPC(qpOASES::QProblem& QP)
 	return exitFlag;
 }
 
-int computeMPC(qpOASES::QProblem& QP, const double* x, const double* r, QP_res_t* QP_res, double* u)
+int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult_t& res)
 {
 	/* Calculate b */
 	double b[NCON];
-	calculate_b(x, r, b);
+	calculate_b(params->x, params->r, b);
 
 	/* Compute hotstarted QP */
-	int nWSR = 10000;
-	double cpuTime = 10;
-	int exitFlag = QP.hotstart(G, NULL, NULL, NULL, b, nWSR, &cpuTime);
+	res->nWSR = 1000;
+	res->tExec = 10;
+	res->exitFlag = QP.hotstart(G, NULL, NULL, NULL, b, res->nWSR, &res->tExec);
 
 	/* Get result */
-	QP.getPrimalSolution( QP_res->z );
+	QP.getPrimalSolution( res->z );
 
 	/* Calculate u */
-	calculate_u(x, r, QP_res->c, u);
+	calculate_u(params->x, params->r, res->c, res->u);
 
-	printf("exitFlag %i, cpu time %fs, nWSR = %i\n", exitFlag, cpuTime, nWSR);
+	printf("exitFlag %i, cpu time %fs, nWSR = %i\n", res->exitFlag, res->tExec, res->nWSR);
 
-	return exitFlag;
+	return res->exitFlag;
 }
 
