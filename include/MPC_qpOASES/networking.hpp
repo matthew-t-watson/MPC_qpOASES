@@ -18,6 +18,6 @@ typedef struct MPCPacketResult_t
 
 int configureSockets();
 int getPacket();
-int getInterfaceIP(char* ip, int len, const char* interface)
+int getInterfaceIP(char* ip, int len, const char* interface);
 
 #endif
