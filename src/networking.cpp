@@ -66,14 +66,19 @@ int getPacket(MPCPacketParams_t& buf)
 		return errno;
 	}
 
-	printf("Received data with id %i, initial state x=[%f,%f,%f,%f,%f,%f,%f,%f], r=\n[",
-			buf.id, buf.x[0], buf.x[1], buf.x[2], buf.x[3], buf.x[4], buf.x[5], buf.x[6], buf.x[7]);
+	printf("Received data with id %i, initial state x=[");
+	for (int i = 0; i < NX; i++)
+	{
+		printf("\t%e", buf.x[i]);
+	}
+
+	printf("]\n r=[\n");
 
 	for (int i=0; i<NR; i++)
 	{
 		for (int j=0; j<NX; j++)
 		{
-			printf("\t%f", buf.r[i*NX+j]);
+			printf("\t%e", buf.r[i*NX+j]);
 		}
 		printf("\n");
 	}
