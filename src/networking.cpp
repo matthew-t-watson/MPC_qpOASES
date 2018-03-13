@@ -101,7 +101,7 @@ int getInterfaceIP(char* ip, const char* interface)
 
 		family = ifa->ifa_addr->sa_family;
 
-		if (strcmp(ifa->ifa_name, interface) != 0
+		if (strcmp(ifa->ifa_name, interface) == 0
 				&& ifa->ifa_addr->sa_family == AF_INET)
 		{
 			s = getnameinfo(ifa->ifa_addr, sizeof(struct sockaddr_in), ip,
