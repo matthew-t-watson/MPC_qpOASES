@@ -89,12 +89,6 @@ int sendPacket(MPCPacketResult_t& data)
 	printMatrix("s", data.s, 1, NS);
 	printMatrix("u", data.u, 1, NU);
 
-	/* Swap double words back */
-//	swapDoubleWords(data.c, data.c_len);
-//	swapDoubleWords(data.cinf, data.cinf_len);
-//	swapDoubleWords(data.s, data.s_len);
-//	swapDoubleWords(data.u, data.u_len);
-
 	/* Send packet */
 	if (sendto(s, &data, sizeof(data), 0, (struct sockaddr*) &si_myrio, slen) == -1)
 	{
