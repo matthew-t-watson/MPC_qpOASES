@@ -17,7 +17,7 @@
 #define PORT 8888
 
 int getInterfaceIP(char* ip, const char* interface);
-inline void swapDoubleWords(const double* data, size_t numel);
+inline void swapDoubleWords(double* data, size_t numel);
 
 
 struct sockaddr_in si_odroid, si_myrio;
@@ -147,7 +147,7 @@ int getInterfaceIP(char* ip, const char* interface)
 	return 0;
 }
 
-inline void swapDoubleWords(const double* data, size_t numel)
+inline void swapDoubleWords(double* data, size_t numel)
 {
 	for (int i = 0; i < numel; i++)
 	{
