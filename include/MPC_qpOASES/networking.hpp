@@ -12,7 +12,7 @@ typedef struct
 	double r[100]; /* We receive more references than we need so that the myRIO doesn't need to know nr at compile time */
 } MPCPacketParams_t;
 
-//#pragma pack(push(4))
+#pragma pack(push(4))
 typedef struct
 {
 	int32_t id, nWSR, exitFlag;
@@ -26,7 +26,7 @@ typedef struct
 	double u[NU];
 	double tExec;
 } MPCPacketResult_t;
-//#pragma pack(pop)
+#pragma pack(pop)
 
 int configureSockets();
 int getPacket(MPCPacketParams_t& buf);
