@@ -151,7 +151,7 @@ inline void swapDoubleWords(double* data, size_t numel)
 {
 	for (int i = 0; i < numel; i++)
 	{
-		data[i] = (double)(((uint64_t)data[i]<<32) | ((uint64_t)data[i]>>32));
+		((uint64_t*)data)[i] = ((((uint64_t*)data)[i]<<32) | (((uint64_t*)data)[i]>>32));
 	}
 }
 
