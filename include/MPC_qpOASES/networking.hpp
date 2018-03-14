@@ -15,7 +15,6 @@ typedef struct
 typedef struct
 {
 	int32_t id, nWSR, exitFlag;
-	const int32_t pad1 = 0;
 	const int32_t c_len = NC*NU;
 	double c[NC * NU];
 	const int32_t pad2 = 0;
