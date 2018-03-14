@@ -149,7 +149,7 @@ int getInterfaceIP(char* ip, const char* interface)
 
 inline void printMatrix(const char* name, double* data, uint32_t rowWidth, uint32_t colWidth)
 {
-	printf("%s = [", name);
+	printf("%s = \n[", name);
 
 	for (int i = 0; i < rowWidth; i++)
 	{
