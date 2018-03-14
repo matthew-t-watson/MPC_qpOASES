@@ -17,6 +17,7 @@
 #define PORT 8888
 
 int getInterfaceIP(char* ip, const char* interface);
+inline void swapDoubleWords(double& data[]);
 
 
 struct sockaddr_in si_odroid, si_myrio;
@@ -65,6 +66,10 @@ int getPacket(MPCPacketParams_t& buf)
 		printf("Error in recvfrom, errno %i\n", errno);
 		return errno;
 	}
+
+	/* Swap double word order */
+	swapDoubleWords(buf.x)
+	swapDoubleWords(buf.r)
 
 	printf("Received data with id %i, initial state x=[", buf.id);
 	for (int i = 0; i < NX; i++)
@@ -141,4 +146,17 @@ int getInterfaceIP(char* ip, const char* interface)
 	freeifaddrs(ifaddr);
 	return 0;
 }
+
+inline void swapDoubleWords(double& data[])
+{
+	for (int i = 0; i < sizeof(data)/sizeof(data[0]); i++)
+	{
+		data[i] = (data[i]<<32) & (data[i]>>32);
+	}
+}
+
+//inline void swapDoubleWords(double& data)
+//{
+//	data = (data<<32) & (data>>32);
+//}
 
