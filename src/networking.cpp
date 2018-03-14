@@ -83,7 +83,11 @@ int getPacket(MPCPacketParams_t& buf)
 
 int sendPacket(MPCPacketResult_t& data)
 {
-
+	printf("Sending packet id %i with\n", data.id);
+	printMatrix("c", data.c, NU, NC);
+	printMatrix("cinf", data.cinf, NU, 1);
+	printMatrix("s", data.s, NS, 1);
+	printMatrix("u", data.u, NU, 1);
 
 	/* Swap double words back */
 	swapDoubleWords(data.c, data.c_len);
