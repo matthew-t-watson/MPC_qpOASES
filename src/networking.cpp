@@ -17,6 +17,7 @@
 #define PORT 8888
 
 int getInterfaceIP(char* ip, const char* interface);
+inline void printMatrix(const char* name, double* data, uint32_t rowWidth, uint32_t colWidth);
 inline void swapDoubleWords(double* data, size_t numel);
 
 
@@ -71,23 +72,10 @@ int getPacket(MPCPacketParams_t& buf)
 	swapDoubleWords(buf.x, NX);
 	swapDoubleWords(buf.r, NX*NR);
 
-	printf("Received data with id %i, initial state x=[", buf.id);
-	for (int i = 0; i < NX; i++)
-	{
-		printf("\t%e", buf.x[i]);
-	}
+	printf("Received data with id %i, initial state\n", buf.id);
 
-	printf("]\n r=[\n");
-
-	for (int i=0; i<NR; i++)
-	{
-		for (int j=0; j<NX; j++)
-		{
-			printf("\t%e", buf.r[i*NX+j]);
-		}
-		printf("\n");
-	}
-	printf("]\n");
+	printMatrix("x", buf.x, NX, 1);
+	printMatrix("r", buf.r, NX, NR);
 
 
 	return 0;
@@ -95,6 +83,8 @@ int getPacket(MPCPacketParams_t& buf)
 
 int sendPacket(MPCPacketResult_t& data)
 {
+
+
 	/* Swap double words back */
 	swapDoubleWords(data.c, data.c_len);
 	swapDoubleWords(data.cinf, data.cinf_len);
@@ -151,6 +141,21 @@ int getInterfaceIP(char* ip, const char* interface)
 
 	freeifaddrs(ifaddr);
 	return 0;
+}
+
+inline void printMatrix(const char* name, double* data, uint32_t rowWidth, uint32_t colWidth)
+{
+	printf("%s = [", name);
+
+	for (int i = 0; i < rowWidth; i++)
+	{
+		for (int j = 0; j < colWidth; j++)
+		{
+			printf("\t%e", buf.r[i * rowWidth + j]);
+		}
+		printf("\n");
+	}
+	printf("]\n");
 }
 
 inline void swapDoubleWords(double* data, size_t numel)
