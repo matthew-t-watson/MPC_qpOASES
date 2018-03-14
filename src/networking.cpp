@@ -151,7 +151,7 @@ inline void printMatrix(const char* name, double* data, uint32_t rowWidth, uint3
 	{
 		for (int j = 0; j < colWidth; j++)
 		{
-			printf("\t%e", data.r[i * rowWidth + j]);
+			printf("\t%e", data[i * rowWidth + j]);
 		}
 		printf("\n");
 	}
