@@ -141,3 +141,4 @@ int getInterfaceIP(char* ip, const char* interface)
 	freeifaddrs(ifaddr);
 	return 0;
 }
+

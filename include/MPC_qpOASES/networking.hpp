@@ -8,22 +8,20 @@
 typedef struct
 {
 	int32_t id;
-	double x[NX], r[NX*NR];
+	double x[NX];
+	double r[100]; /* We receive more references than we need so that the myRIO doesn't need to know nr at compile time */
 } MPCPacketParams_t;
 
 typedef struct
 {
 	int32_t id, nWSR, exitFlag;
-	union
-	{
-		double z[NC * NU + NU + NS];
-		struct
-		{
-			double c[NC * NU];
-			double cinf[NU];
-			double s[NS];
-		};
-	};
+	const int32_t c_len = NC*NU;
+	double c[NC * NU];
+	int32_t cinf_len;
+	double cinf[NU];
+	int32_t s_len;
+	double s[NS];
+	int32_t u_len
 	double u[NU], tExec;
 } MPCPacketResult_t;
 
