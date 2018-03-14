@@ -83,7 +83,7 @@ int getPacket(MPCPacketParams_t& buf)
 
 int sendPacket(MPCPacketResult_t& data)
 {
-	printf("Sending packet id %i with\n", data.id);
+	printf("Sending packet with id = %i, nWSR = %i, exitFlag = %i,\n", data.id, data.nWSR, data.exitFlag);
 	printMatrix("c", data.c, NC, NU);
 	printMatrix("cinf", data.cinf, 1, NU);
 	printMatrix("s", data.s, 1, NS);
