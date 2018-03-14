@@ -105,7 +105,7 @@ int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult
 
 	/* Copy data into packet */
 	id = params.id;
-	c_len = NC*NU;
+	//c_len = NC*NU;
 	memcpy(&res.c, &QPout.c, sizeof(res.c));
 	cinf_len = NU;
 	memcpy(&res.cinf, &QPout.cinf, sizeof(res.cinf));
