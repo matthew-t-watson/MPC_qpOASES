@@ -103,21 +103,12 @@ int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult
 	QPout_t QPout;
 	QP.getPrimalSolution( QPout.z );
 
-<<<<<<< HEAD
 	/* Copy remaining QP results into packet */
 	res.id = params.id;
 	memcpy(&res.c, &QPout.c, sizeof(res.c));
 	memcpy(&res.cinf, &QPout.cinf, sizeof(res.cinf));
 	memcpy(&res.s, &QPout.s, sizeof(res.s));
-=======
-	/* Copy data into packet */
-	id = params.id;
-	memcpy(&res.c, &QPout.c, sizeof(res.c));
-	memcpy(&res.cinf, &QPout.cinf, sizeof(res.cinf));
-	memcpy(&res.s, &QPout.s, sizeof(res.s));
-	memcpy(&res.u, &QPout.u, sizeof(res.u));
 
->>>>>>> 6cc1db6d271a07433c524ba6eede77d478a684d0
 	/* Calculate u */
 	calculate_u(params.x, params.r, res.c, res.u);
 
