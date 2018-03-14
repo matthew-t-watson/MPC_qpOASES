@@ -108,7 +108,6 @@ int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult
 	memcpy(&res.c, &QPout.c, sizeof(res.c));
 	memcpy(&res.cinf, &QPout.cinf, sizeof(res.cinf));
 	memcpy(&res.s, &QPout.s, sizeof(res.s));
-	int test;
 	/* Calculate u */
 	calculate_u(params.x, params.r, res.c, res.u);
 
