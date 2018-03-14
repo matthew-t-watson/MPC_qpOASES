@@ -16,13 +16,13 @@ typedef struct
 typedef struct
 {
 	int32_t id, nWSR, exitFlag;
-	const int32_t c_len = NC*NU-1;
+	const int32_t c_len = NC*NU+1;
 	double c[NC * NU];
-	const int32_t cinf_len = NU-1;
+	const int32_t cinf_len = NU+1;
 	double cinf[NU];
-	const int32_t s_len = NS-1;
+	const int32_t s_len = NS+1;
 	double s[NS];
-	const int32_t u_len = NU-1;
+	const int32_t u_len = NU+1;
 	double u[NU];
 	double tExec;
 } MPCPacketResult_t;
