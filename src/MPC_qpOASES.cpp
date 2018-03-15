@@ -112,6 +112,14 @@ int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult
 	/* Calculate u */
 	calculate_u(params.x, params.r, res.c, res.u);
 
+	if (res.exitFlag != 0)
+	{
+		for (int i = 0; i < sizeof(res.u)/sizeof(res.u[0]); i++)
+		{
+			res.u[i] = 0;
+		}
+	}
+
 	printf("exitFlag %i, cpu time %fs, nWSR = %i\n", res.exitFlag, res.tExec, res.nWSR);
 
 	return res.exitFlag;
