@@ -72,10 +72,11 @@ int getPacket(MPCPacketParams_t& buf)
 	swapDoubleWords(buf.x, NX);
 	swapDoubleWords(buf.r, NX*NR);
 
+#ifdef VERBOSE
 	printf("Received data with id %i, initial state\n", buf.id);
-
 	printMatrix("x", buf.x, 1, NX);
 	printMatrix("r", buf.r, NR, NX);
+#endif
 
 
 	return 0;
@@ -83,11 +84,13 @@ int getPacket(MPCPacketParams_t& buf)
 
 int sendPacket(MPCPacketResult_t& data)
 {
+#ifdef VERBOSE
 	printf("Sending packet with id = %i, nWSR = %i, exitFlag = %i,\n", data.id, data.nWSR, data.exitFlag);
 	printMatrix("c", data.c, NC, NU);
 	printMatrix("cinf", data.cinf, 1, NU);
 	printMatrix("s", data.s, 1, NS);
 	printMatrix("u", data.u, 1, NU);
+#endif
 
 	/* Send packet */
 	if (sendto(s, &data, sizeof(data), 0, (struct sockaddr*) &si_myrio, slen) == -1)
