@@ -102,6 +102,7 @@ int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult
 	/* Get result */
 	QPout_t QPout;
 	QP.getPrimalSolution( QPout.z );
+	res.cost = QP.getObjVal();
 
 	/* Copy remaining QP results into packet */
 	res.id = params.id;

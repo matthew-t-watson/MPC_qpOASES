@@ -27,6 +27,7 @@ typedef struct
 	const int32_t u_len = NU;
 	double u[NU];
 	double tExec;
+	double cost;
 } MPCPacketResult_t;
 
 int configureSockets();
