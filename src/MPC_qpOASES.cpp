@@ -29,26 +29,29 @@ int main()
 	initMPC(QP);
 
 	/* Configure UDP socket */
-	if (configureSockets() > 0)
+	if (configureSockets() == 0)
 	{
-		return 1;
+		MPCPacketParams_t MPCParams;
+		MPCPacketResult_t MPCRes;
+		while (1)
+		{
+			if (getPacket(MPCParams) > 0)
+			{
+				continue;
+			}
+
+			computeMPC(QP, MPCParams, MPCRes);
+
+			if (sendPacket(MPCRes) > 0)
+			{
+				continue;
+			}
+		}
 	}
-
-	MPCPacketParams_t MPCParams;
-	MPCPacketResult_t MPCRes;
-	while (1)
+	else
 	{
-		if (getPacket(MPCParams) > 0)
-		{
-			return 1;
-		}
-
-		computeMPC(QP, MPCParams, MPCRes);
-
-		if (sendPacket(MPCRes) > 0)
-		{
-			return 1;
-		}
+		printf("Failed to configure socket\n");
+		return 1;
 	}
 }
 
