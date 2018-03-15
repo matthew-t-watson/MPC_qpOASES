@@ -120,7 +120,9 @@ int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult
 		}
 	}
 
+#ifdef VERBOSE
 	printf("exitFlag %i, cpu time %fs, nWSR = %i\n", res.exitFlag, res.tExec, res.nWSR);
+#endif
 
 	return res.exitFlag;
 }
