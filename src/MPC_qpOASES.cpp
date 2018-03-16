@@ -76,7 +76,7 @@ int computeMPC(qpOASES::QProblem& QP, qpOASES::SymSparseMat& Hsp, qpOASES::Spars
 
 	res.nWSR = 1000;
 	res.tExec = 10;
-	res.exitFlag = QP.init(&Hsp, G, &Asp, NULL, NULL, NULL, b, res.nWSR, &res.tExec, initialPrimalSolution, 0, 0, 0, 0);
+	res.exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, res.nWSR, &res.tExec, initialPrimalSolution, 0, 0, 0, 0);
 
 	/* Get result */
 	QPout_t QPout;
