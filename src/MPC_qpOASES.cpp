@@ -68,6 +68,7 @@ int computeMPC(qpOASES::QProblem& QP, qpOASES::SymSparseMat* Hsp, qpOASES::Spars
 
 	/* Calculate cinf */
 	calculate_cinf(params.x, params.r, QPout.cinf);
+	printf("cinf = [%f\t%f\t%f\t%f", QPout.cinf[0], QPout.cinf[1], QPout.cinf[2], QPout.cinf[3]);
 
 	qpOASES::Options opt;
 	opt.setToMPC(); /*  Sets all options to values resulting in minimum solution time */
