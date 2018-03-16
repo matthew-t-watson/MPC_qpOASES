@@ -82,7 +82,9 @@ int initMPC(qpOASES::SQProblemSchur& QP)
 	/* create sparse matrices */
 	qpOASES::SymSparseMat *Hsp = new qpOASES::SymSparseMat(H_NROWS, H_NCOLS, H_NCOLS, H);
 	qpOASES::SparseMatrix *Asp = new qpOASES::SymSparseMat(A_NROWS, A_NCOLS, A_NCOLS, A);
-	Hsp->print();
+	char test[10000];
+	Hsp->print(test);
+	printf("%s", test);
 
 	/* Init QP - sparse */
 	int exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, nWSR, &cpuTime);
