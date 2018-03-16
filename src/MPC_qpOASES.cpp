@@ -63,7 +63,8 @@ int main()
 
 int computeMPC(qpOASES::QProblem& QP, qpOASES::SymSparseMat* Hsp, qpOASES::SparseMatrix* Asp, MPCPacketParams_t& params, MPCPacketResult_t& res)
 {
-	static double initialPrimalSolution[NC*NU+NU+NS] = {0};
+	static QPout_t QPout;
+	static double initialDualSolution[NC*NU+NU+NS] = {0};
 
 	qpOASES::Options opt;
 	opt.setToMPC(); /*  Sets all options to values resulting in minimum solution time */
@@ -79,10 +80,9 @@ int computeMPC(qpOASES::QProblem& QP, qpOASES::SymSparseMat* Hsp, qpOASES::Spars
 
 	res.nWSR = 1000;
 	res.tExec = 10;
-	res.exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, res.nWSR, &res.tExec, initialPrimalSolution, 0, 0, 0, 0);
+	res.exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, res.nWSR, &res.tExec, QPout.z);
 
 	/* Get result */
-	QPout_t QPout;
 	QP.getPrimalSolution( QPout.z );
 	res.cost = QP.getObjVal();
 
