@@ -5,7 +5,7 @@
  * File: calculate_cinf.c
  *
  * MATLAB Coder version            : 3.3
- * C/C++ source code generated on  : 16-Mar-2018 17:58:29
+ * C/C++ source code generated on  : 16-Mar-2018 18:05:19
  */
 
 /* Include Files */
@@ -17,11 +17,11 @@
  * CALCULATE_U Summary of this function goes here
  *    Detailed explanation goes here
  * Arguments    : const double x[8]
- *                const double r[160]
+ *                const double r[104]
  *                double cinf[4]
  * Return Type  : void
  */
-void calculate_cinf(const double x[8], const double r[160], double cinf[4])
+void calculate_cinf(const double x[8], const double r[104], double cinf[4])
 {
   int i0;
   double b_x[8];
@@ -39,7 +39,7 @@ void calculate_cinf(const double x[8], const double r[160], double cinf[4])
     1.2044471270425463E-15, 1.2044471270424869E-15, 1.2044471270424997E-15 };
 
   for (i0 = 0; i0 < 8; i0++) {
-    b_x[i0] = x[i0] - r[152 + i0];
+    b_x[i0] = x[i0] - r[96 + i0];
   }
 
   for (i0 = 0; i0 < 4; i0++) {

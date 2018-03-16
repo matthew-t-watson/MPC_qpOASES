@@ -5,7 +5,7 @@
  * File: calculate_cinf.h
  *
  * MATLAB Coder version            : 3.3
- * C/C++ source code generated on  : 16-Mar-2018 17:58:29
+ * C/C++ source code generated on  : 16-Mar-2018 18:05:19
  */
 
 #ifndef CALCULATE_CINF_H
@@ -18,7 +18,7 @@
 #include "calculate_cinf_types.h"
 
 /* Function Declarations */
-extern void calculate_cinf(const double x[8], const double r[160], double cinf[4]);
+extern void calculate_cinf(const double x[8], const double r[104], double cinf[4]);
 extern void calculate_cinf_initialize(void);
 
 #endif
