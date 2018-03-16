@@ -5,7 +5,7 @@
  * File: calculate_b_types.h
  *
  * MATLAB Coder version            : 3.3
- * C/C++ source code generated on  : 16-Mar-2018 17:55:16
+ * C/C++ source code generated on  : 16-Mar-2018 17:58:28
  */
 
 #ifndef CALCULATE_B_TYPES_H

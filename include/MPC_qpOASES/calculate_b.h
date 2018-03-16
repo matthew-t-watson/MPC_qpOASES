@@ -5,7 +5,7 @@
  * File: calculate_b.h
  *
  * MATLAB Coder version            : 3.3
- * C/C++ source code generated on  : 16-Mar-2018 17:55:16
+ * C/C++ source code generated on  : 16-Mar-2018 17:58:28
  */
 
 #ifndef CALCULATE_B_H
@@ -18,7 +18,7 @@
 #include "calculate_b_types.h"
 
 /* Function Declarations */
-extern void calculate_b(const double x[8], const double r[64], double b[306]);
+extern void calculate_b(const double x[8], const double r[160], double b[496]);
 extern void calculate_b_initialize(void);
 
 #endif
