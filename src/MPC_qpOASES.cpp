@@ -30,8 +30,8 @@ int main()
 	qpOASES::SymSparseMat *Hsp = new qpOASES::SymSparseMat(H_NROWS, H_NCOLS, H_NCOLS, H);
 	qpOASES::SparseMatrix *Asp = new qpOASES::SymSparseMat(A_NROWS, A_NCOLS, A_NCOLS, A);
 
-	H.createDiagInfo();
-	A.createDiagInfo();
+	Hsp->createDiagInfo();
+	Asp->createDiagInfo();
 
 	/* Configure UDP socket */
 	if (configureSockets() == 0)
