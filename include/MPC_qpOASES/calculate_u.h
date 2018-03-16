@@ -5,7 +5,7 @@
  * File: calculate_u.h
  *
  * MATLAB Coder version            : 3.3
- * C/C++ source code generated on  : 12-Mar-2018 17:17:00
+ * C/C++ source code generated on  : 16-Mar-2018 15:27:50
  */
 
 #ifndef CALCULATE_U_H
