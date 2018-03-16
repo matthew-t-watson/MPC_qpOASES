@@ -55,7 +55,6 @@ int main()
 	}
 }
 
-
 int initMPC(qpOASES::QProblem& QP)
 {
 	int nWSR = 10000;
