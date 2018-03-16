@@ -6,6 +6,7 @@
 #include "MPC_int_consts.hpp"
 #include "calculate_u.h"
 #include "calculate_b.h"
+#include "calculate_cinf.h"
 #include "networking.hpp"
 #include <errno.h>
 #include "string.h" /* for memcpy */
@@ -15,8 +16,8 @@ int computeMPC(qpOASES::QProblem& QP, qpOASES::SymSparseMat* Hsp, qpOASES::Spars
 
 
 static const double G[NC*NU+NU+NS] = {0};
-static const double x0[] = {0,0,0,0,0,0,0,0};
-static const double r0[NR*NX] = {0};
+//static const double x0[] = {0,0,0,0,0,0,0,0};
+//static const double r0[NR*NX] = {0};
 
 #define USE_SPARSE_MATRICES
 #define INITIALISED_HOMOTOPY
@@ -64,7 +65,9 @@ int main()
 int computeMPC(qpOASES::QProblem& QP, qpOASES::SymSparseMat* Hsp, qpOASES::SparseMatrix* Asp, MPCPacketParams_t& params, MPCPacketResult_t& res)
 {
 	static QPout_t QPout;
-	static double initialDualSolution[NC*NU+NU+NS] = {0};
+
+	/* Calculate cinf */
+	calculate_cinf(params.x, params.r, QPout.cinf);
 
 	qpOASES::Options opt;
 	opt.setToMPC(); /*  Sets all options to values resulting in minimum solution time */
@@ -80,7 +83,7 @@ int computeMPC(qpOASES::QProblem& QP, qpOASES::SymSparseMat* Hsp, qpOASES::Spars
 
 	res.nWSR = 1000;
 	res.tExec = 10;
-	res.exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, res.nWSR, &res.tExec);//, QPout.z);
+	res.exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, res.nWSR, &res.tExec, QPout.z);
 
 	/* Get result */
 	QP.getPrimalSolution( QPout.z );
