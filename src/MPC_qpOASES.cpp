@@ -58,7 +58,7 @@ int main()
 }
 
 
-int computeMPC(qpOASES::QProblem* QP, qpOASES::SymSparseMat* Hsp, qpOASES::SparseMatrix& Asp, MPCPacketParams_t& params, MPCPacketResult_t& res)
+int computeMPC(qpOASES::QProblem& QP, qpOASES::SymSparseMat* Hsp, qpOASES::SparseMatrix* Asp, MPCPacketParams_t& params, MPCPacketResult_t& res)
 {
 	static double initialPrimalSolution[NC*NU+NU+NS] = {0};
 
