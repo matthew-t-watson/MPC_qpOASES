@@ -21,7 +21,7 @@ static const double G[NC*NU+NU+NS] = {0};
 static const double x0[] = {0,0,0,0,0,0,0,0};
 static const double r0[NR*NX] = {0};
 
-#define USE_SPARSE_MATRICES
+//#define USE_SPARSE_MATRICES
 
 int main()
 {
