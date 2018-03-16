@@ -84,8 +84,7 @@ int initMPC(qpOASES::SQProblemSchur& QP)
 	qpOASES::SparseMatrix *Asp = new qpOASES::SymSparseMat(A_NROWS, A_NCOLS, A_NCOLS, A);
 
 	/* Init QP - sparse */
-	//int exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, nWSR, &cpuTime);
-	int exitFlag = QP.init(Hsp, G, A, NULL, NULL, NULL, b, nWSR, &cpuTime);
+	int exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, nWSR, &cpuTime);
 
 #else
 	/* Init QP - dense */
