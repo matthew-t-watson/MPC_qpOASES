@@ -21,7 +21,7 @@ static const double G[NC*NU+NU+NS] = {0};
 static const double x0[] = {0,0,0,0,0,0,0,0};
 static const double r0[NR*NX] = {0};
 
-//#define USE_SPARSE_MATRICES
+#define USE_SPARSE_MATRICES
 
 int main()
 {
@@ -82,12 +82,11 @@ int initMPC(qpOASES::SQProblemSchur& QP)
 	/* create sparse matrices */
 	qpOASES::SymSparseMat *Hsp = new qpOASES::SymSparseMat(H_NROWS, H_NCOLS, H_NCOLS, H);
 	qpOASES::SparseMatrix *Asp = new qpOASES::SymSparseMat(A_NROWS, A_NCOLS, A_NCOLS, A);
-	char test[10000];
-	Hsp.print(test);
-	printf("%s", test);
 
 	/* Init QP - sparse */
-	int exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, nWSR, &cpuTime);
+	//int exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, nWSR, &cpuTime);
+	int exitFlag = QP.init(Hsp, G, A, NULL, NULL, NULL, b, nWSR, &cpuTime);
+
 #else
 	/* Init QP - dense */
 	int exitFlag = QP.init(H, G, A, NULL, NULL, NULL, b, nWSR, &cpuTime);
