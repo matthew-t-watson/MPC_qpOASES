@@ -11,8 +11,7 @@
 #include "string.h" /* for memcpy */
 
 
-int initMPC(qpOASES::QProblem& QP, qpOASES::SymSparseMat *Hsp, qpOASES::SparseMatrix *Asp);
-int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult_t& res);
+int computeMPC(qpOASES::QProblem& QP, qpOASES::SymSparseMat& Hsp, qpOASES::SparseMatrix& Asp, MPCPacketParams_t& params, MPCPacketResult_t& res);
 
 
 static const double G[NC*NU+NU+NS] = {0};
@@ -26,12 +25,10 @@ int main()
 {
 	/* Allocate QProblem object */
 	qpOASES::QProblem QP(NC*NU+NU+NS,NCON,qpOASES::HST_POSDEF);
-	//qpOASES::SQProblemSchur QP(NC*NU+NU+NS,NCON,qpOASES::HST_POSDEF);
 
 	/* Initialise QP */
 	qpOASES::SymSparseMat *Hsp = new qpOASES::SymSparseMat(H_NROWS, H_NCOLS, H_NCOLS, H);
 	qpOASES::SparseMatrix *Asp = new qpOASES::SymSparseMat(A_NROWS, A_NCOLS, A_NCOLS, A);
-	initMPC(QP, Hsp, Asp);
 
 	/* Configure UDP socket */
 	if (configureSockets() == 0)
@@ -45,7 +42,7 @@ int main()
 				continue;
 			}
 
-			computeMPC(QP, MPCParams, MPCRes);
+			computeMPC(QP, Hsp, Asp, MPCParams, MPCRes);
 
 			if (sendPacket(MPCRes) > 0)
 			{
@@ -61,14 +58,7 @@ int main()
 }
 
 
-
-
-
-
-	/* Init QP - sparse */
-	int exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, nWSR, &cpuTime);
-
-int computeMPC(qpOASES::QProblem& QP, qpOASES::SymSparseMat *Hsp, qpOASES::SparseMatrix *Asp, MPCPacketParams_t& params, MPCPacketResult_t& res)
+int computeMPC(qpOASES::QProblem& QP, qpOASES::SymSparseMat& Hsp, qpOASES::SparseMatrix& Asp, MPCPacketParams_t& params, MPCPacketResult_t& res)
 {
 	static double initialPrimalSolution[NC*NU+NU+NS] = {0};
 
@@ -86,7 +76,7 @@ int computeMPC(qpOASES::QProblem& QP, qpOASES::SymSparseMat *Hsp, qpOASES::Spars
 
 	res.nWSR = 1000;
 	res.tExec = 10;
-	res.exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, res.nWSR, &res.tExec, initialPrimalSolution, 0, 0, 0, 0);
+	res.exitFlag = QP.init(&Hsp, G, &Asp, NULL, NULL, NULL, b, res.nWSR, &res.tExec, initialPrimalSolution, 0, 0, 0, 0);
 
 	/* Get result */
 	QPout_t QPout;
