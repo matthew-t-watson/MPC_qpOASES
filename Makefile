@@ -16,8 +16,8 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 CPPFLAGS ?= $(INC_FLAGS) -mcpu=native -Wall -Wfloat-equal -DLINUX -O3 -std=c++11
 
-LDFLAGS = -L ../qpOASES_3.2_ARMPL/build/libs -L/opt/arm/armpl_time_limited-18.1.0_Generic-AArch64_Ubuntu-16.04_arm-hpc-compiler_18.1_aarch64-linux/lib
-LDLIBS = -lqpOASES -lm -larmpl
+LDFLAGS = -L/usr/local/lib -L ../qpOASES_3.2_ARMPL/build/libs -L/opt/arm/armpl_time_limited-18.1.0_Generic-AArch64_Ubuntu-16.04_arm-hpc-compiler_18.1_aarch64-linux/lib
+LDLIBS = -lqpOASES -lm -larmpl -lhsl_ma57 #-lfakemetis
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
 	$(CC) $(OBJS) $(LDFLAGS) $(LDLIBS) -o $@
