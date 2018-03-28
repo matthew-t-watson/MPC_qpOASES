@@ -3,13 +3,13 @@
 
 #define NX		(8)
 #define NU		(4)
-#define NC		(10)
-#define NS		(10)
-#define NR		(10)
-#define NCON		(426)
-#define H_NROWS		(54)
-#define H_NCOLS		(54)
-#define A_NROWS		(426)
-#define A_NCOLS		(54)
+#define NC		(7)
+#define NS		(11)
+#define NR		(7)
+#define NCON		(318)
+#define H_NROWS		(43)
+#define H_NCOLS		(43)
+#define A_NROWS		(318)
+#define A_NCOLS		(43)
 
 #endif
