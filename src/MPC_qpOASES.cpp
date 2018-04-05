@@ -20,17 +20,29 @@ static const double G[NC*NU+NU+NS] = {0};
 //static const double r0[NR*NX] = {0};
 
 
+/* create sparse matrices */
+qpOASES::SymSparseMat *Hsp;
+qpOASES::SparseMatrix *Asp;
+
+
 int main()
 {
 	/* Allocate QProblem object */
 	qpOASES::QProblem QP(NC*NU+NU+NS,NCON,qpOASES::HST_POSDEF);
+
+	/* create sparse matrices */
+	Hsp = new qpOASES::SymSparseMat(H_NROWS, H_NCOLS,
+	H_NCOLS, H);
+	Asp = new qpOASES::SymSparseMat(A_NROWS, A_NCOLS,
+	A_NCOLS, A);
 
 	/* Configure UDP socket */
 	if (configureSockets() == 0)
 	{
 		MPCPacketParams_t MPCParams;
 		MPCPacketResult_t MPCRes;
-		MPCRes.exitFlag = 1;
+		MPCRes.exitFlag = 123;
+
 		while (1)
 		{
 			if (getPacket(MPCParams) > 0)
@@ -60,7 +72,6 @@ int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult
 	double b[NCON];
 	calculate_b(params.x, params.r, b);
 
-	/* Compute hotstarted QP */
 	res.nWSR = 1000;
 	res.tExec = 10;
 	if (init)
@@ -70,18 +81,13 @@ int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult
 		opt.printLevel = qpOASES::PL_NONE;
 		QP.setOptions(opt);
 
-		/* create sparse matrices */
-		qpOASES::SymSparseMat *Hsp = new qpOASES::SymSparseMat(H_NROWS, H_NCOLS,
-				H_NCOLS, H);
-		qpOASES::SparseMatrix *Asp = new qpOASES::SymSparseMat(A_NROWS, A_NCOLS,
-				A_NCOLS, A);
-
 		/* Init QP - sparse */
-		int exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, res.nWSR,
+		res.exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, res.nWSR,
 				&res.tExec);
 	}
 	else
 	{
+		/* Compute hotstarted QP */
 		res.exitFlag = QP.hotstart(G, NULL, NULL, NULL, b, res.nWSR, &res.tExec);
 	}
 
