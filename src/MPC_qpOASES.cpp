@@ -77,8 +77,8 @@ int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult
 				A_NCOLS, A);
 
 		/* Init QP - sparse */
-		int exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, nWSR,
-				&cpuTime);
+		int exitFlag = QP.init(Hsp, G, Asp, NULL, NULL, NULL, b, res.nWSR,
+				&res.tExec);
 	}
 	else
 	{
