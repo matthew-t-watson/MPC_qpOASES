@@ -5,7 +5,7 @@
  * File: calculate_cinf.c
  *
  * MATLAB Coder version            : 3.3
- * C/C++ source code generated on  : 05-Apr-2018 08:47:31
+ * C/C++ source code generated on  : 05-Apr-2018 09:02:00
  */
 
 /* Include Files */
