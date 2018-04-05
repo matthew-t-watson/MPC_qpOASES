@@ -6,10 +6,10 @@
 #define NC		(5)
 #define NS		(12)
 #define NR		(5)
-#define NCON		(480)
+#define NCON		(328)
 #define H_NROWS		(36)
 #define H_NCOLS		(36)
-#define A_NROWS		(480)
+#define A_NROWS		(328)
 #define A_NCOLS		(36)
 
 #endif
