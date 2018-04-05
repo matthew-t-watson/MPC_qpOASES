@@ -9,7 +9,7 @@ typedef struct
 {
 	int32_t id;
 	double x[NX];
-	double r[200]; /* We receive more references than we need so that the myRIO doesn't need to know nr at compile time */
+	double r[80]; /* We receive more references than we need so that the myRIO doesn't need to know nr at compile time */
 } MPCPacketParams_t;
 
 typedef struct
