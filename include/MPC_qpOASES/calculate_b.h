@@ -5,7 +5,7 @@
  * File: calculate_b.h
  *
  * MATLAB Coder version            : 3.3
- * C/C++ source code generated on  : 07-Apr-2018 16:47:45
+ * C/C++ source code generated on  : 07-Apr-2018 17:19:45
  */
 
 #ifndef CALCULATE_B_H
