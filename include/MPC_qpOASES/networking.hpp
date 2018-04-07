@@ -9,7 +9,7 @@ typedef struct
 {
 	int32_t id;
 	double x[NX];
-	double r[24];
+	double r[NR*NX];
 } MPCPacketParams_t;
 
 typedef struct
