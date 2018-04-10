@@ -5,7 +5,7 @@
  * File: calculate_u.h
  *
  * MATLAB Coder version            : 3.3
- * C/C++ source code generated on  : 10-Apr-2018 12:06:25
+ * C/C++ source code generated on  : 10-Apr-2018 12:13:11
  */
 
 #ifndef CALCULATE_U_H
@@ -18,7 +18,7 @@
 #include "calculate_u_types.h"
 
 /* Function Declarations */
-extern void calculate_u(const double x[8], const double r[24], const double c[12],
+extern void calculate_u(const double x[8], const double r[16], const double c[8],
   double u[4]);
 extern void calculate_u_initialize(void);
 
