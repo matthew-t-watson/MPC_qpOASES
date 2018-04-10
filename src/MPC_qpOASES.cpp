@@ -82,7 +82,8 @@ int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult
 	if (init)
 	{
 		qpOASES::Options opt;
-		opt.setToMPC(); /*  Sets all options to values resulting in minimum solution time */
+		//opt.setToMPC(); /*  Sets all options to values resulting in minimum solution time */
+		opt.setToDefault();
 		opt.printLevel = qpOASES::PL_NONE;
 		QP.setOptions(opt);
 
