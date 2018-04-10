@@ -30,8 +30,18 @@ typedef struct
 	double cost;
 } MPCPacketResult_t;
 
+typedef struct
+{
+	int32_t id, nWSR, exitFlag;
+	const int32_t u_len = NU;
+	double u[NU];
+	double tExec;
+	double cost;
+} MPCPacketResultReduced_t;
+
 int configureSockets();
 int getPacket(MPCPacketParams_t& buf);
 int sendPacket(MPCPacketResult_t& data);
+int sendPacket(MPCPacketResultReduced_t& data);
 
 #endif

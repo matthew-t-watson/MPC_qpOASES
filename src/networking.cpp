@@ -102,6 +102,23 @@ int sendPacket(MPCPacketResult_t& data)
 	return 0;
 }
 
+int sendPacket(MPCPacketResultReduced_t& data)
+{
+#ifdef VERBOSE
+	printf("Sending packet with id = %i, nWSR = %i, exitFlag = %i,\n", data.id, data.nWSR, data.exitFlag);
+	printMatrix("u", data.u, 1, NU);
+#endif
+
+	/* Send packet */
+	if (sendto(s, &data, sizeof(data), 0, (struct sockaddr*) &si_myrio, slen) == -1)
+	{
+		printf("Error in sendto, errno %i\n", errno);
+		return errno;
+	}
+	//printf("Sent %u bytes", sizeof(data));
+	return 0;
+}
+
 int getInterfaceIP(char* ip, const char* interface)
 {
 	struct ifaddrs *ifaddr, *ifa;
