@@ -58,7 +58,8 @@ int main()
 				continue;
 			}
 
-			computeMPC(QP, MPCParams, MPCRes, MPCRes.exitFlag != 0);
+			computeMPC(QP, MPCParams, MPCRes, MPCRes.exitFlag == 123);
+//			computeMPC(QP, MPCParams, MPCRes, MPCRes.exitFlag != 0);
 
 			if (sendPacket(MPCRes) > 0)
 			{
@@ -71,6 +72,9 @@ int main()
 		printf("Failed to configure socket\n");
 		return 1;
 	}
+
+	delete Hsp;
+	delete Asp;
 }
 
 int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResultReduced_t& res, bool init)
