@@ -1,5 +1,7 @@
 
 #include <qpOASES.hpp>
+#include "qpOASES/Constants.hpp"
+
 //#include "Eigen"
 #include "MPC_qpOASES.hpp"
 #include "MPC_double_consts.hpp"
