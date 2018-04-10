@@ -93,7 +93,7 @@ int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult
 	calculate_b(params.x, params.r, b);
 
 	res.nWSR = 1000;
-	res.tExec = 10;
+	res.tExec = 0.007;
 	if (init)
 	{
 		qpOASES::Options opt;
