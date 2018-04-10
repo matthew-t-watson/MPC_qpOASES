@@ -5,7 +5,7 @@
  * File: calculate_u_types.h
  *
  * MATLAB Coder version            : 3.3
- * C/C++ source code generated on  : 10-Apr-2018 13:21:36
+ * C/C++ source code generated on  : 10-Apr-2018 13:28:02
  */
 
 #ifndef CALCULATE_U_TYPES_H
