@@ -98,14 +98,14 @@ int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult
 
 	/* Get result */
 	QPout_t QPout;
-	QP.getPrimalSolution( QPout.z );
+	QP.getPrimalSolution(QPout.z);
 	res.cost = QP.getObjVal();
+
+	/* Calculate u, storing result in res */
+	calculate_u(params.x, params.r, QPout.c, res.u);
 
 	/* Copy remaining QP results into packet */
 	res.id = params.id;
-
-	/* Calculate u */
-	calculate_u(params.x, params.r, res.c, res.u);
 
 	if (res.exitFlag != 0)
 	{
@@ -152,14 +152,15 @@ int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult
 	QP.getPrimalSolution( QPout.z );
 	res.cost = QP.getObjVal();
 
+	/* Calculate u, storing result in res */
+	calculate_u(params.x, params.r, QPout.c, res.u);
+
 	/* Copy remaining QP results into packet */
 	res.id = params.id;
 	memcpy(&res.c, &QPout.c, sizeof(res.c));
 	memcpy(&res.cinf, &QPout.cinf, sizeof(res.cinf));
 	memcpy(&res.s, &QPout.s, sizeof(res.s));
 
-	/* Calculate u */
-	calculate_u(params.x, params.r, res.c, res.u);
 
 	if (res.exitFlag != 0)
 	{
