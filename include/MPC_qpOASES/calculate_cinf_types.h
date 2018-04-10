@@ -5,7 +5,7 @@
  * File: calculate_cinf_types.h
  *
  * MATLAB Coder version            : 3.3
- * C/C++ source code generated on  : 10-Apr-2018 13:15:39
+ * C/C++ source code generated on  : 10-Apr-2018 13:21:37
  */
 
 #ifndef CALCULATE_CINF_TYPES_H
