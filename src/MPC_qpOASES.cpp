@@ -66,7 +66,7 @@ int main()
 			else
 			{
 				/* Last solution errored, so reset and init again */
-				QP->reset();
+				QP.reset();
 				computeMPC(QP, MPCParams, MPCRes, true);
 			}
 
