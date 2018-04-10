@@ -58,8 +58,17 @@ int main()
 				continue;
 			}
 
-			computeMPC(QP, MPCParams, MPCRes, MPCRes.exitFlag == 123);
-//			computeMPC(QP, MPCParams, MPCRes, MPCRes.exitFlag != 0);
+			if (MPCRes.exitFlag == 0)
+			{
+				/* Last solution was successful, so can hotstart now */
+				computeMPC(QP, MPCParams, MPCRes, false);
+			}
+			else
+			{
+				/* Last solution errored, so reset and init again */
+				QP->reset();
+				computeMPC(QP, MPCParams, MPCRes, true);
+			}
 
 			if (sendPacket(MPCRes) > 0)
 			{
