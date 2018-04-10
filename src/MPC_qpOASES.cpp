@@ -88,8 +88,8 @@ int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult
 		//opt.setToDefault(); /* Far too slow */
 		opt.printLevel = qpOASES::PL_NONE;
 		opt.terminationTolerance = 5.0e6 * qpOASES::EPS; /* Same as default options */
-		opt.boundTolerance =  1.0e6 * EPS; /* Same as default options */
-		opt.enableEqualities =  BT_FALSE; /* Same as default options */
+		opt.boundTolerance =  1.0e6 * qpOASES::EPS; /* Same as default options */
+		opt.enableEqualities =  qpOASES::BT_FALSE; /* Same as default options */
 		QP.setOptions(opt);
 
 		/* Init QP - sparse */
