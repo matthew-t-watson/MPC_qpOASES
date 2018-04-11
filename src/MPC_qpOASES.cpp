@@ -14,7 +14,7 @@
 #include <stdbool.h>
 
 
-#define USE_REDUCED_PACKET_SIZE /* Only transmit u, omitting c cinf s */
+//#define USE_REDUCED_PACKET_SIZE /* Only transmit u, omitting c cinf s */
 
 int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResultReduced_t& res, bool init);
 int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResult_t& res, bool init);
