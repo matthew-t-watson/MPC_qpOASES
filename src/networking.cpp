@@ -169,7 +169,7 @@ inline void printMatrix(const char* name, double data[], uint32_t nRow, uint32_t
 	{
 		for (int j = 0; j < nCol; j++)
 		{
-			printf("\t%.10e", data[i * nRow + j]);
+			printf("\t%.10e", data[i * nCol + j]);
 		}
 		printf("\n");
 	}
