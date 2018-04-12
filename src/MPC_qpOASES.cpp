@@ -59,9 +59,9 @@ int main()
 			}
 
 			/* Check reference vector is of correct length */
-			if (MPCParams.r_len != NR*NX)
+			if (MPCParams.r_len != NR)
 			{
-				printf("Received incorrect reference vector length of %i, expected %i\n", MPCParams.r_len, NR*NX);
+				printf("Received %i reference vectors, expected %i\n", MPCParams.r_len, NR);
 				break;
 			}
 
