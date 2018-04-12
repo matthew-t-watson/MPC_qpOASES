@@ -75,7 +75,7 @@ int getPacket(MPCPacketParams_t& buf)
 #ifdef VERBOSE
 	printf("Received data with id %i, r_len %i,\n", buf.id, buf.r_len);
 	printMatrix("x", buf.x, 1, NX);
-	printMatrix("r", buf.r, NR, NX);
+	printMatrix("r", buf.r, NX, NR);
 #endif
 
 
