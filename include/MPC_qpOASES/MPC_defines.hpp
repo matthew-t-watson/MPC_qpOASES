@@ -4,12 +4,12 @@
 #define NX		(8)
 #define NU		(4)
 #define NC		(3)
-#define NS		(12)
+#define NS		(10)
 #define NR		(3)
-#define NCON		(308)
-#define H_NROWS		(28)
-#define H_NCOLS		(28)
-#define A_NROWS		(308)
-#define A_NCOLS		(28)
+#define NCON		(276)
+#define H_NROWS		(26)
+#define H_NCOLS		(26)
+#define A_NROWS		(276)
+#define A_NCOLS		(26)
 
 #endif
