@@ -70,7 +70,7 @@ int getPacket(MPCPacketParams_t& buf)
 
 	/* Swap double word order */
 	swapDoubleWords(buf.x, NX);
-	swapDoubleWords(buf.r, NX*NR);
+	//swapDoubleWords(buf.r, NX*NR);
 
 #ifdef VERBOSE
 	printf("Received data with id %i, initial state\n", buf.id);
