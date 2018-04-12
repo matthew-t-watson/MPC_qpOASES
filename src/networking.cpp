@@ -73,7 +73,7 @@ int getPacket(MPCPacketParams_t& buf)
 	//swapDoubleWords(buf.r, NX*NR);
 
 #ifdef VERBOSE
-	printf("Received data with id %i, initial state\n", buf.id);
+	printf("Received data with id %i, r_len %i,\n", buf.id, buf.r_len);
 	printMatrix("x", buf.x, 1, NX);
 	printMatrix("r", buf.r, NR, NX);
 #endif
