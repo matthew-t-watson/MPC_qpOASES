@@ -17,7 +17,7 @@
 #define PORT 8888
 
 int getInterfaceIP(char* ip, const char* interface);
-inline void printMatrix(const char* name, double* data, uint32_t nRow, uint32_t nCol);
+inline void printMatrix(const char* name, double data[], uint32_t nRow, uint32_t nCol);
 inline void swapDoubleWords(double* data, size_t numel);
 
 
@@ -161,7 +161,7 @@ int getInterfaceIP(char* ip, const char* interface)
 	return 0;
 }
 
-inline void printMatrix(const char* name, double* data, uint32_t nRow, uint32_t nCol)
+inline void printMatrix(const char* name, double data[], uint32_t nRow, uint32_t nCol)
 {
 	printf("%s = \n[", name);
 
