@@ -68,10 +68,6 @@ int getPacket(MPCPacketParams_t& buf)
 		return errno;
 	}
 
-	/* Swap double word order */
-	//swapDoubleWords(buf.x, NX);
-	//swapDoubleWords(buf.r, NX*NR);
-
 #ifdef VERBOSE
 	printf("Received data with id %i, r_len %i,\n", buf.id, buf.r_len);
 	printMatrix("x", buf.x, 1, NX);
@@ -176,11 +172,4 @@ inline void printMatrix(const char* name, double data[], uint32_t nRow, uint32_t
 	printf("]\n");
 }
 
-inline void swapDoubleWords(double* data, size_t numel)
-{
-	for (int i = 0; i < numel; i++)
-	{
-		((uint64_t*)data)[i] = ((((uint64_t*)data)[i]<<32) | (((uint64_t*)data)[i]>>32));
-	}
-}
 

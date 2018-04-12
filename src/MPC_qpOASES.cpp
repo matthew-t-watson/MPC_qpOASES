@@ -58,6 +58,12 @@ int main()
 				continue;
 			}
 
+			/* Check reference vector is of correct length */
+			if (MPCParams.r_len != NR)
+			{
+				break;
+			}
+
 			if (MPCRes.exitFlag == 0)
 			{
 				/* Last solution was successful, so can hotstart now */
@@ -79,11 +85,12 @@ int main()
 	else
 	{
 		printf("Failed to configure socket\n");
-		return 1;
 	}
 
 	delete Hsp;
 	delete Asp;
+
+	return 1;
 }
 
 int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params, MPCPacketResultReduced_t& res, bool init)
