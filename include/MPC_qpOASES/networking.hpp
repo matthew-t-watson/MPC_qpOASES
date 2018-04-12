@@ -8,6 +8,7 @@
 typedef struct
 {
 	int32_t id;
+	int32_t pad1;
 	double x[NX];
 	double r[NR*NX];
 } MPCPacketParams_t;
