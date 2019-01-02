@@ -17,8 +17,7 @@
 #define PORT 8888
 
 int getInterfaceIP(char* ip, const char* interface);
-inline void printMatrix(const char* name, double data[], uint32_t nRow, uint32_t nCol);
-inline void swapDoubleWords(double* data, size_t numel);
+void printMatrix(const char* name, double data[], uint32_t nRow, uint32_t nCol);
 
 
 struct sockaddr_in si_odroid, si_myrio;
@@ -71,7 +70,7 @@ int getPacket(MPCPacketParams_t& buf)
 #ifdef VERBOSE
 	printf("Received data with id %i, r_len %i,\n", buf.id, buf.r_len);
 	printMatrix("x", buf.x, 1, NX);
-	printMatrix("r", buf.r, NR, NX);
+	printMatrix("r", buf.r, NR, 3);
 #endif
 
 
@@ -157,7 +156,7 @@ int getInterfaceIP(char* ip, const char* interface)
 	return 0;
 }
 
-inline void printMatrix(const char* name, double data[], uint32_t nRow, uint32_t nCol)
+void printMatrix(const char* name, double data[], uint32_t nRow, uint32_t nCol)
 {
 	printf("%s = \n[", name);
 

@@ -12,7 +12,7 @@ typedef struct
 	double x[NX];
 	int32_t pad2;
 	int32_t r_len;
-	double r[NR*NX];
+	double r[NR*3];
 } MPCPacketParams_t;
 
 typedef struct
