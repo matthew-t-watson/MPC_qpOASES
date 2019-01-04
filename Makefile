@@ -15,7 +15,7 @@ DEPS := $(OBJS:.o=.d)
 INC_DIRS := ./include ./include/MPC_qpOASES ../qpOASES/include ../qpOASES/include/qpOASES
 INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
-CPPFLAGS ?= $(INC_FLAGS) -Wall -DLINUX -O3 -std=c++11 #-DVERBOSE
+CPPFLAGS ?= $(INC_FLAGS) -Wall -DLINUX -O3 -std=c++11 -DVERBOSE
 
 LDFLAGS = -L ../qpOASES/build/libs #-L/usr/local/lib 
 LDLIBS = -lqpOASES -lm #-lhsl_ma57 -lfakemetis
