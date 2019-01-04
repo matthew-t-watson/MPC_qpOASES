@@ -37,9 +37,9 @@ int configureSockets()
 	memset((char *) &si_odroid, 0, sizeof(si_odroid));
 
 	char eth0Addr[20];
-	if (getInterfaceIP(eth0Addr,"eth0") > 0)
+	if (getInterfaceIP(eth0Addr,"enp0s31f6") > 0)
 	{
-		printf("Failed to obtain eth0 IP\n");
+		printf("Failed to obtain enp0s31f6 IP\n");
 		return 1;
 	}
 
@@ -148,7 +148,7 @@ int getInterfaceIP(char* ip, const char* interface)
 	}
 	if (strlen(ip) == 0)
 	{
-		printf("Failed to determine eth0 IP\n");
+		printf("Failed to determine enp0s31f6 IP\n");
 		return 1;
 	}
 
