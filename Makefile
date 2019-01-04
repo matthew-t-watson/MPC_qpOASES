@@ -17,7 +17,7 @@ INC_FLAGS := $(addprefix -I,$(INC_DIRS))
 
 CPPFLAGS ?= $(INC_FLAGS) -mcpu=native -Wall -Wfloat-equal -DLINUX -O3 -std=c++11 #-DVERBOSE
 
-LDFLAGS = -L/usr/local/lib -L ../qpOASES/build/libs
+LDFLAGS = -L ../qpOASES/build/libs #-L/usr/local/lib 
 LDLIBS = -lqpOASES -lm #-lhsl_ma57 -lfakemetis
 
 $(BUILD_DIR)/$(TARGET_EXEC): $(OBJS)
