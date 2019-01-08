@@ -117,7 +117,8 @@ int sendPacket(MPCPacketResultReduced_t& data)
 int getInterfaceIP(char* ip, const char* interface)
 {
 	struct ifaddrs *ifaddr, *ifa;
-	int family, s, n;
+	int s, n;
+	//int family;
 	*ip = 0;
 
 	if (getifaddrs(&ifaddr) == -1)
@@ -131,7 +132,7 @@ int getInterfaceIP(char* ip, const char* interface)
 		if (ifa->ifa_addr == NULL)
 			continue;
 
-		family = ifa->ifa_addr->sa_family;
+		//family = ifa->ifa_addr->sa_family;
 
 		if (strcmp(ifa->ifa_name, interface) == 0
 				&& ifa->ifa_addr->sa_family == AF_INET)
@@ -160,9 +161,9 @@ void printMatrix(const char* name, double data[], uint32_t nRow, uint32_t nCol)
 {
 	printf("%s = \n[", name);
 
-	for (int i = 0; i < nRow; i++)
+	for (unsigned int i = 0; i < nRow; i++)
 	{
-		for (int j = 0; j < nCol; j++)
+		for (unsigned int j = 0; j < nCol; j++)
 		{
 			printf("\t%.10e", data[i * nCol + j]);
 		}

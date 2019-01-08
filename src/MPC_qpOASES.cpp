@@ -155,7 +155,7 @@ int computeMPC(qpOASES::QProblem& QP, MPCPacketParams_t& params,
 
 	if (res.exitFlag != 0)
 	{
-		for (int i = 0; i < sizeof(res.u)/sizeof(res.u[0]); i++)
+		for (unsigned int i = 0; i < sizeof(res.u)/sizeof(res.u[0]); i++)
 		{
 			res.u[i] = 0;
 		}
